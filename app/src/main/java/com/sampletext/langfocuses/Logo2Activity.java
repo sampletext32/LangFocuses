@@ -1,5 +1,6 @@
 package com.sampletext.langfocuses;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +9,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Logo2Activity extends AppCompatActivity {
+public class Logo2Activity extends Activity {
 
     ImageView logoImageView2;
 
@@ -49,8 +50,8 @@ public class Logo2Activity extends AppCompatActivity {
         logoImageView2 = findViewById(R.id.logoImageView2);
         loadingText = findViewById(R.id.loadingText);
 
-        float animScaleStart = 1f;
-        float animScaleEnd   = 1.05f;
+        float animScaleStart = 0.95f;
+        float animScaleEnd   = 1.00f;
         float animRelativeTo = 0.5f;
 
         Animation anim = new ScaleAnimation(

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     style="fullscreenActivity"
+    android:background="#000000"
     tools:context=".Logo2Activity">
 
     <ImageView
@@ -22,7 +23,7 @@
             android:id="@+id/loadingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="180dp"
             android:text="Loading   "
             android:textAllCaps="true"
             android:textSize="32sp"
