@@ -1,9 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".DeckActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/back" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/btn_deck_up"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@drawable/rounded_up"
+                android:gravity="center"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="8dp"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/arrow_up"
+                    android:cropToPadding="false" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/deckHeader"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/rectangle"
+                android:fontFamily="@font/dalton_maag_effra_bold"
+                android:gravity="center"
+                android:text="Deck Lorem1" />
+
+            <LinearLayout
+                android:id="@+id/btn_deck_down"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@drawable/rounded_down"
+                android:gravity="center"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="8dp"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/arrow_down"
+                    android:cropToPadding="false" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/mainPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <android.support.v4.view.PagerTabStrip
+                android:id="@+id/mainPagerTabStrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom" />
+
+        </android.support.v4.view.ViewPager>
+
+        <SeekBar
+            android:id="@+id/mainSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="24" />
+    </LinearLayout>
+
+</LinearLayout>

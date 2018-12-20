@@ -7,8 +7,6 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -26,15 +24,15 @@ public class MainActivity extends Activity {
     View.OnTouchListener btn_Highlight_OnTouchListener = new View.OnTouchListener() {
 
         @Override
-        public boolean onTouch(View view, MotionEvent event) {
+        public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_HOVER_ENTER:
                 case MotionEvent.ACTION_DOWN:
-                    view.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_HOVER_EXIT:
                 case MotionEvent.ACTION_UP:
-                    view.getBackground().setColorFilter(Color.parseColor("#F5FFFFFF"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().clearColorFilter();
                     break;
 
                 default:
