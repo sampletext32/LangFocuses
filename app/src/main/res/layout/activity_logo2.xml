@@ -23,11 +23,10 @@
         android:weightSum="1920"
         android:orientation="vertical">
 
-        <View
+        <Space
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="254">
-        </View>
+            android:layout_weight="254"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -22,7 +22,7 @@
         android:orientation="vertical"
         android:weightSum="1920">
 
-        <View
+        <Space
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="260" />
@@ -37,7 +37,7 @@
             android:textColor="#574435"
             android:textSize="45dp" />
 
-        <View
+        <Space
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="10" />
@@ -52,7 +52,7 @@
             android:textColor="#574435"
             android:textSize="45dp" />
 
-        <View
+        <Space
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="283" />
@@ -80,7 +80,7 @@
         </LinearLayout>
 
 
-        <View
+        <Space
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="44" />
@@ -108,7 +108,7 @@
         </LinearLayout>
 
 
-        <View
+        <Space
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="44" />
@@ -134,12 +134,5 @@
                 android:textColor="#574435"
                 android:textSize="22.5dp" />
         </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="503" />
-
     </LinearLayout>
 </FrameLayout>
