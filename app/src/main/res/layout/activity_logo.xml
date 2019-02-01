@@ -13,6 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@drawable/karty_antifokusov"
+        android:background="@drawable/zastavka"
         android:scaleType="fitXY" />
 </LinearLayout>

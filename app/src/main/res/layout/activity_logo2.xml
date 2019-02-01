@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     style="fullscreenActivity"
-    android:background="#000000"
+    android:background="#907754"
     tools:context=".Logo2Activity">
 
     <ImageView
@@ -13,21 +13,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|center_vertical"
-        android:background="@drawable/samuray_inverted"
-        android:scaleType="fitXY" />
+        android:background="@drawable/loading_notext"
+        android:scaleType="fitXY"
+        android:contentDescription=" " />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
-        <TextView
-            android:id="@+id/loadingText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
-            android:text="Loading   "
-            android:textAllCaps="true"
-            android:textSize="32sp"
-            android:fontFamily="@font/_dalton_maag_effra_bold"
-            android:textColor="#FFFFFF"/>
+        android:weightSum="1920"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="254">
+        </View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1666"
+            android:gravity="center|top">
+            <TextView
+                android:id="@+id/loadingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hanzi"
+                android:text="Loading"
+                android:textAllCaps="true"
+                android:textColor="#907754"
+                android:textSize="32sp" />
+        </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>

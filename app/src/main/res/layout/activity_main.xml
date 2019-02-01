@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:theme="@style/MyTheme.FullScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal|center_vertical"
-    android:orientation="vertical"
+    android:theme="@style/MyTheme.FullScreen"
     tools:context=".MainActivity">
 
     <ImageView
@@ -13,45 +11,135 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@drawable/samuray"
+        android:background="@drawable/background_menu"
         android:scaleType="fitXY"
-        android:visibility="visible"/>
+        android:visibility="visible" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1920">
 
-        <Button
-            android:id="@+id/btn_how_to_use"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/rounded"
-            android:fontFamily="@font/dalton_maag_effra_bold"
-            android:textColor="#000000"
-            android:text="@string/how_to_use" />
+            android:layout_height="0px"
+            android:layout_weight="260" />
 
-        <Button
-            android:id="@+id/btn_choose_deck"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/rounded"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/dalton_maag_effra_bold"
-            android:textColor="#000000"
-            android:text="@string/choose_deck" />
+            android:layout_height="0px"
+            android:layout_weight="135"
+            android:fontFamily="@font/fk_mandarin"
+            android:text="Антифокусы"
+            android:textAlignment="center"
+            android:textColor="#574435"
+            android:textSize="45dp" />
 
-        <Button
-            android:id="@+id/btn_about"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/rounded"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/dalton_maag_effra_bold"
-            android:textColor="#000000"
-            android:text="@string/about" />
+            android:layout_height="0px"
+            android:layout_weight="10" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="135"
+            android:fontFamily="@font/fk_mandarin"
+            android:text="языка"
+            android:textAlignment="center"
+            android:textColor="#574435"
+            android:textSize="45dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="283" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="169"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1080">
+
+            <Button
+                android:id="@+id/btn_how_to_use"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="800"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#e6c287"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/how_to_use"
+                android:textAllCaps="false"
+                android:textColor="#574435"
+                android:textSize="22.5dp" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="44" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="169"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1080">
+
+            <Button
+                android:id="@+id/btn_choose_deck"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="800"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#e6c287"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/choose_deck"
+                android:textAllCaps="false"
+                android:textColor="#574435"
+                android:textSize="22.5dp" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="44" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="169"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1080">
+
+            <Button
+                android:id="@+id/btn_about"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="800"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#e6c287"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/about"
+                android:textAllCaps="false"
+                android:textColor="#574435"
+                android:textSize="22.5dp" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="503" />
+
     </LinearLayout>
 </FrameLayout>

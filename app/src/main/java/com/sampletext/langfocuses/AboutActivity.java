@@ -22,14 +22,14 @@ public class AboutActivity extends AppCompatActivity {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_HOVER_ENTER:
                 case MotionEvent.ACTION_DOWN:
-                    v.getBackground().setColorFilter(Color.parseColor("#F5888888"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(Color.parseColor("#e6c287"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_HOVER_EXIT:
                 case MotionEvent.ACTION_UP:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_CANCEL:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 default:
             }
@@ -49,7 +49,6 @@ public class AboutActivity extends AppCompatActivity {
 
     private TextView mInfoText;
 
-    private LinearLayout mInfoContainer;
     //endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +56,8 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         mInfoText = findViewById(R.id.infoText);
         mBtnBack = findViewById(R.id.btn_back);
-        mInfoContainer = findViewById(R.id.infoContainer);
 
-        mBtnBack.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+        mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
         mBtnBack.setOnTouchListener(btnBackOnTouchListener);
         mBtnBack.setOnClickListener(btnBackOnClickListener);
     }

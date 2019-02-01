@@ -1,31 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".SelectDeckActivity">
+
+    <ImageView
+        android:id="@+id/backgroundImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/background_text"
+        android:scaleType="fitXY"
+        android:visibility="visible" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:background="@drawable/back"/>
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1920">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="135" />
 
         <LinearLayout
-            android:id="@+id/decks_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="vertical">
+            android:layout_height="0px"
+            android:layout_weight="68"
+            android:orientation="horizontal"
+            android:weightSum="1080">
+
+            <View
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="100" />
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="83"
+                android:background="@drawable/arrow_back"
+                android:scaleType="fitXY" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="25" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="246"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="center|top"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="-12dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Выбрать колоду"
+                android:textColor="#7f6e52"
+                android:textSize="40dp" /><!-- margin чтобы текст сместить вверх без зазоров-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="163"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1080">
+
+            <View
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:background="#669766" />
+
+            <Button
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="794"
+                android:background="#cfbc9d"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Гуманистические"
+                android:textAllCaps="false"
+                android:textColor="#669766"
+                android:textSize="29dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="44" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="163"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1080">
+
+            <View
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:background="#986c6c" />
+
+            <Button
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="794"
+                android:background="#cfbc9d"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Боевые"
+                android:textAllCaps="false"
+                android:textColor="#986c6c"
+                android:textSize="29dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="44" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="163"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1080">
+
+            <View
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:background="#5a88a5" />
+
+            <Button
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="794"
+                android:background="#cfbc9d"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Провокативные"
+                android:textAllCaps="false"
+                android:textColor="#5a88a5"
+                android:textSize="29dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="44" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="163"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1080">
+
+            <View
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:background="#6b6b6b" />
+
+            <Button
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="794"
+                android:background="#cfbc9d"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Гуру"
+                android:textAllCaps="false"
+                android:textColor="#6b6b6b"
+                android:textSize="29dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="44" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="163"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1080">
+
+            <View
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:background="#8370b4" />
+
+            <Button
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="794"
+                android:background="#cfbc9d"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Антифя"
+                android:textAllCaps="false"
+                android:textColor="#8370b4"
+                android:textSize="29dp" />
+        </LinearLayout>
+        <!-- 1080 - 2 * 72 = 936-->
+
+    </LinearLayout>
+</FrameLayout>

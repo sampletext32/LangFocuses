@@ -76,14 +76,14 @@ public class SelectDeckActivity extends AppCompatActivity {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_HOVER_ENTER:
                 case MotionEvent.ACTION_DOWN:
-                    v.getBackground().setColorFilter(Color.parseColor("#F5888888"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(Color.parseColor("#e6c287"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_HOVER_EXIT:
                 case MotionEvent.ACTION_UP:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_CANCEL:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 default:
             }
@@ -98,15 +98,9 @@ public class SelectDeckActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_deck);
 
         mBtnBack = findViewById(R.id.btn_back);
-        mBtnBack.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+        mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
         mBtnBack.setOnTouchListener(btnBackOnTouchListener);
         mBtnBack.setOnClickListener(btnBackOnClickListener);
-
-        mDecksContainer = findViewById(R.id.decks_container);
-
-        for (int i = 0; i < DecksContainer.getDecksCount(); i++) {
-            createDeck(this, mDecksContainer, i);
-        }
     }
     private void createDeck(Context context, ViewGroup parent, int deckIndex) {
         FrameLayout              deckFrame    = new FrameLayout(context);

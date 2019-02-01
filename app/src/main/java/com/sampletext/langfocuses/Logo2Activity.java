@@ -75,9 +75,9 @@ public class Logo2Activity extends Activity {
                             for (int i = 0; i < dots; i++) {
                                 dotsStr += '.';
                             }
-                            for (int i = dots; i < 4; i++) {
-                                dotsStr += ' ';
-                            }
+//                            for (int i = dots; i < 4; i++) {
+//                                dotsStr += ' ';
+//                            }
                             loadingText.setText("Loading" + dotsStr);
                         }
                     });
