@@ -54,14 +54,14 @@ public class DeckActivity extends AppCompatActivity {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_HOVER_ENTER:
                 case MotionEvent.ACTION_DOWN:
-                    v.getBackground().setColorFilter(Color.parseColor("#F5888888"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(Color.parseColor("#e6c287"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_HOVER_EXIT:
                 case MotionEvent.ACTION_UP:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_CANCEL:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 default:
             }
@@ -194,17 +194,6 @@ public class DeckActivity extends AppCompatActivity {
         mMainPagerTabStrip = findViewById(R.id.mainPagerTabStrip);
         mMainSeekBar = findViewById(R.id.mainSeekBar);
         mMainPager = findViewById(R.id.mainPager);
-        mDeckHeader = findViewById(R.id.deckHeader);
-        mBtnDeckUp = findViewById(R.id.btn_deck_up);
-        mBtnDeckDown = findViewById(R.id.btn_deck_down);
-
-        mBtnDeckUp.setClickable(true);
-        mBtnDeckDown.setClickable(true);
-        mBtnDeckUp.setOnClickListener(btnDeckUpOnClickListener);
-        mBtnDeckDown.setOnClickListener(btnDeckDownOnClickListener);
-
-        mBtnDeckUp.setOnTouchListener(btnChangeDeckTouchListener);
-        mBtnDeckDown.setOnTouchListener(btnChangeDeckTouchListener);
 
         mMainPager.addOnPageChangeListener(pageChangeListener);
 
@@ -222,7 +211,7 @@ public class DeckActivity extends AppCompatActivity {
         }
 
         mBtnBack = findViewById(R.id.btn_back);
-        mBtnBack.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+        mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
         mBtnBack.setOnTouchListener(btnBackOnTouchListener);
         mBtnBack.setOnClickListener(btnBackOnClickListener);
 

@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="myBlack">#000005</color>
+
+    <color name="deck1">#669766</color>
+    <color name="deck2">#986c6c</color>
+    <color name="deck3">#5a88a5</color>
+    <color name="deck4">#6b6b6b</color>
+    <color name="deck5">#8370b4</color>
 </resources>

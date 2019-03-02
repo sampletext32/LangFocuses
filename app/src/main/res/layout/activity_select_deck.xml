@@ -78,7 +78,7 @@
             android:orientation="horizontal"
             android:weightSum="1080">
 
-            <View
+            <!--<View
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="9"
@@ -89,6 +89,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="794"
                 android:background="#cfbc9d"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Гуманистические"
+                android:textAllCaps="false"
+                android:textColor="#669766"
+                android:textSize="29dp" />-->
+            <Button
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="791"
+                android:background="@drawable/gumanisticheskie"
                 android:fontFamily="@font/roboto_regular"
                 android:text="Гуманистические"
                 android:textAllCaps="false"

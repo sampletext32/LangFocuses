@@ -3,75 +3,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_text"
     android:orientation="vertical"
+    android:weightSum="1920"
     tools:context=".DeckActivity">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="137" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="73"
+        android:orientation="horizontal"
+        android:weightSum="1080">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100" />
 
         <Button
             android:id="@+id/btn_back"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/back" />
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="83"
+            android:background="@drawable/arrow_back_83_68"
+            android:backgroundTint="#87704A"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="171" />
 
-            <LinearLayout
-                android:id="@+id/btn_deck_up"
-                android:layout_width="match_parent"
-                android:layout_height="18dp"
-                android:background="@drawable/rounded_up"
-                android:gravity="center"
-                android:padding="5dp">
+        <Button
+            android:id="@+id/btn_deck1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="73"
+            android:background="@drawable/card_change_1_off" />
 
-                <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="8dp"
-                    android:adjustViewBounds="false"
-                    android:background="@drawable/arrow_up"
-                    android:cropToPadding="false" />
-            </LinearLayout>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="38" />
 
-            <TextView
-                android:id="@+id/deckHeader"
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:background="@drawable/rectangle"
-                android:fontFamily="@font/dalton_maag_effra_bold"
-                android:gravity="center"
-                android:text="Deck Lorem1" />
+        <Button
+            android:id="@+id/btn_deck2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="73"
+            android:background="@drawable/card_change_2_off" />
 
-            <LinearLayout
-                android:id="@+id/btn_deck_down"
-                android:layout_width="match_parent"
-                android:layout_height="18dp"
-                android:background="@drawable/rounded_down"
-                android:gravity="center"
-                android:padding="5dp">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="38" />
 
-                <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="8dp"
-                    android:adjustViewBounds="false"
-                    android:background="@drawable/arrow_down"
-                    android:cropToPadding="false" />
-            </LinearLayout>
-        </LinearLayout>
+        <Button
+            android:id="@+id/btn_deck3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="73"
+            android:background="@drawable/card_change_3_off" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="38" />
+
+        <Button
+            android:id="@+id/btn_deck4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="73"
+            android:background="@drawable/card_change_4_off"
+            android:foreground="@drawable/card_change_bw_on3"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="38" />
+
+        <Button
+            android:id="@+id/btn_deck5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="73"
+            android:background="@drawable/card_change_5_off"
+            android:foreground="@drawable/card_change_bw_on3" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1674"
         android:orientation="vertical">
 
 
@@ -79,7 +108,8 @@
             android:id="@+id/mainPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:baselineAligned="false">
 
             <android.support.v4.view.PagerTabStrip
                 android:id="@+id/mainPagerTabStrip"
