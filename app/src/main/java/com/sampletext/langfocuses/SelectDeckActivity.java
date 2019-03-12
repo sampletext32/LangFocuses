@@ -24,10 +24,11 @@ public class SelectDeckActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            int      position = (int) v.getTag();
+            int      position = Integer.parseInt(v.getTag().toString());
             Intent   intent   = new Intent(SelectDeckActivity.this, DeckActivity.class);
             intent.putExtra("deck_id", position);
             startActivity(intent);
+            overridePendingTransition(0,0);
         }
     };
     //endregion
@@ -80,10 +81,10 @@ public class SelectDeckActivity extends AppCompatActivity {
                     break;
                 case MotionEvent.ACTION_HOVER_EXIT:
                 case MotionEvent.ACTION_UP:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
+                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_CANCEL:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
+                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 default:
             }
@@ -98,42 +99,28 @@ public class SelectDeckActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_deck);
 
         mBtnBack = findViewById(R.id.btn_back);
-        mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
+        mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
         mBtnBack.setOnTouchListener(btnBackOnTouchListener);
         mBtnBack.setOnClickListener(btnBackOnClickListener);
-    }
-    private void createDeck(Context context, ViewGroup parent, int deckIndex) {
-        FrameLayout              deckFrame    = new FrameLayout(context);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (100 * Static.Density));
 
-        if (parent.getChildCount() != 0) {
-            layoutParams.topMargin = (int) (10 * Static.Density);
-        }
+        Button deck0button = findViewById(R.id.button_deck_0);
+        deck0button.setOnTouchListener(deckTouchListener);
+        deck0button.setOnClickListener(deckClickListener);
 
-        deckFrame.setLayoutParams(layoutParams);
+        Button deck1button = findViewById(R.id.button_deck_1);
+        deck1button.setOnTouchListener(deckTouchListener);
+        deck1button.setOnClickListener(deckClickListener);
 
-        LinearLayout deckLayout = new LinearLayout(context);
-        layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        deckLayout.setLayoutParams(layoutParams);
-        deckLayout.setBackground(context.getDrawable(R.drawable.deck));
-        deckLayout.setOrientation(LinearLayout.VERTICAL);
-        deckLayout.setClickable(true);
-        deckLayout.setOnTouchListener(deckTouchListener);
-        deckLayout.setTag(deckIndex);
-        deckLayout.setOnClickListener(deckClickListener);
-        deckFrame.addView(deckLayout);
+        Button deck2button = findViewById(R.id.button_deck_2);
+        deck2button.setOnTouchListener(deckTouchListener);
+        deck2button.setOnClickListener(deckClickListener);
 
-        TextView deckHeaderText = new TextView(this);
-        layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        deckHeaderText.setLayoutParams(layoutParams);
+        Button deck3button = findViewById(R.id.button_deck_3);
+        deck3button.setOnTouchListener(deckTouchListener);
+        deck3button.setOnClickListener(deckClickListener);
 
-        deckHeaderText.setGravity(Gravity.CENTER);
-        deckHeaderText.setText(DecksContainer.getDeck(deckIndex).getHeader());
-        deckHeaderText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26);
-        deckHeaderText.setTextColor(DecksContainer.getDeck(deckIndex).getDeckColor());
-
-        deckLayout.addView(deckHeaderText);
-
-        parent.addView(deckFrame);
+        Button deck4button = findViewById(R.id.button_deck_4);
+        deck4button.setOnTouchListener(deckTouchListener);
+        deck4button.setOnClickListener(deckClickListener);
     }
 }

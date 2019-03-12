@@ -22,6 +22,7 @@ import java.util.List;
 public class DeckActivity extends AppCompatActivity {
 
     List<Integer> _displayedCardIndexes = new ArrayList<>();
+    LinearLayout _deckActivityRoot;
 
     MyFragmentPagerAdapter pagerAdapter;
 
@@ -106,7 +107,7 @@ public class DeckActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            if (lastPos != position) // checking to prevent recursive calls from seekbar to pager and backwords
+            if (lastPos != position) // checking to prevent recursive calls from seekbar to pager and backwards
             {
                 lastPos = position;
                 mMainSeekBar.setProgress(position);
@@ -149,38 +150,6 @@ public class DeckActivity extends AppCompatActivity {
     //endregion
 
     private TextView mDeckHeader;
-
-    private LinearLayout mBtnDeckUp;
-
-    private LinearLayout mBtnDeckDown;
-
-    //region btnDeckDownOnClickListener
-    View.OnClickListener btnDeckDownOnClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getApplicationContext(), "Deck Down", Toast.LENGTH_SHORT).show();
-
-            if (_displayedDeckId < DecksContainer.getDecksCount() - 1) {
-                _displayedDeckId++;
-                initializeDeck();
-            }
-        }
-    };
-
-    //region btnDeckUpOnClickListener
-    View.OnClickListener btnDeckUpOnClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getApplicationContext(), "Deck Up", Toast.LENGTH_SHORT).show();
-            if (_displayedDeckId > 0) {
-                _displayedDeckId--;
-                initializeDeck();
-            }
-        }
-    };
-    //endregion
     private void setLocalPageIndex(int index) {
         mMainSeekBar.setProgress(index);
         mMainPager.setCurrentItem(index, true);
@@ -191,9 +160,20 @@ public class DeckActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck);
 
+        _deckActivityRoot = findViewById(R.id.deckActivityRoot);
+
+        //region !!!ПРОТЕСТИТЬ НА ТЕЛЕФОНЕ!!!
+        /*if(_deckActivityRoot.getHeight() > 1920)
+        {
+            _deckActivityRoot.setScaleY(1920f / _deckActivityRoot.getHeight());
+        }*/
+        //endregion
+
+
         mMainPagerTabStrip = findViewById(R.id.mainPagerTabStrip);
         mMainSeekBar = findViewById(R.id.mainSeekBar);
         mMainPager = findViewById(R.id.mainPager);
+        mDeckHeader = findViewById(R.id.deckNameHeaderText);
 
         mMainPager.addOnPageChangeListener(pageChangeListener);
 
@@ -232,22 +212,5 @@ public class DeckActivity extends AppCompatActivity {
                 deck.getDeckColor(), PorterDuff.Mode.SRC_ATOP);
 
         setLocalPageIndex(_displayedCardIndexes.get(_displayedDeckId));
-
-        if (_displayedDeckId == 0) {
-            mBtnDeckUp.setAlpha(0.5f);
-            mBtnDeckUp.setOnTouchListener(null);
-        }
-        else {
-            mBtnDeckUp.setAlpha(1f);
-            mBtnDeckUp.setOnTouchListener(btnChangeDeckTouchListener);
-        }
-        if (_displayedDeckId == DecksContainer.getDecksCount() - 1) {
-            mBtnDeckDown.setAlpha(0.5f);
-            mBtnDeckDown.setOnTouchListener(null);
-        }
-        else {
-            mBtnDeckDown.setAlpha(1f);
-            mBtnDeckDown.setOnTouchListener(btnChangeDeckTouchListener);
-        }
     }
 }

@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_text"
+    android:orientation="vertical"
+    android:weightSum="1920"
     tools:context=".AboutActivity">
-
-    <ImageView
-        android:id="@+id/backgroundImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@drawable/background_text"
-        android:scaleType="fitXY"
-        android:visibility="visible" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,28 +16,30 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="135" />
+            android:layout_height="0dp"
+            android:layout_weight="137" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="68"
+            android:layout_height="0dp"
+            android:layout_weight="73"
             android:orientation="horizontal"
             android:weightSum="1080">
 
             <Space
-                android:layout_width="0px"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100" />
 
             <Button
                 android:id="@+id/btn_back"
-                android:layout_width="0px"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="83"
-                android:background="@drawable/arrow_back"
-                android:scaleType="fitXY" />
+                android:background="@drawable/arrow_back_83_68"
+                android:backgroundTint="#87704A" />
+
         </LinearLayout>
 
         <Space
@@ -113,4 +109,4 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

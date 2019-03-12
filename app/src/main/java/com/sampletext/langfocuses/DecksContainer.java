@@ -3,6 +3,11 @@ package com.sampletext.langfocuses;
 import android.content.Context;
 import android.graphics.Color;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class DecksContainer {
@@ -11,26 +16,66 @@ public class DecksContainer {
 
     public static void init(Context context) {
         _decks.clear();
-        Deck loremDeck1 = Deck.getLoremDeck(context);
-        Deck loremDeck2 = Deck.getLoremDeck(context);
-        Deck loremDeck3 = Deck.getLoremDeck(context);
-        Deck loremDeck4 = Deck.getLoremDeck(context);
-        Deck loremDeck5 = Deck.getLoremDeck(context);
-        loremDeck1.setHeader(loremDeck1.getHeader() + 1);
-        loremDeck2.setHeader(loremDeck2.getHeader() + 2);
-        loremDeck3.setHeader(loremDeck3.getHeader() + 3);
-        loremDeck4.setHeader(loremDeck4.getHeader() + 4);
-        loremDeck5.setHeader(loremDeck5.getHeader() + 5);
-        loremDeck1.setDeckColor(Color.parseColor("#0000DD"));
-        loremDeck2.setDeckColor(Color.parseColor("#FF0000"));
-        loremDeck3.setDeckColor(Color.parseColor("#C8A2C8"));
-        loremDeck4.setDeckColor(Color.parseColor("#008000"));
-        loremDeck5.setDeckColor(Color.parseColor("#FFD700"));
-        _decks.add(loremDeck1);
-        _decks.add(loremDeck2);
-        _decks.add(loremDeck3);
-        _decks.add(loremDeck4);
-        _decks.add(loremDeck5);
+        try {
+            InputStream stream = context.getResources().openRawResource(R.raw.deck_data);
+            byte[] buffer = new byte[stream.available()];
+            int read = stream.read(buffer);
+            stream.close();
+            if (read == buffer.length) {
+                String deckDataJsonString = new String(buffer, StandardCharsets.UTF_8);
+                JSONObject jsonObject = new JSONObject(deckDataJsonString);
+                JSONArray jsonDecks = jsonObject.getJSONArray("decks");
+                for (int i = 0; i < jsonDecks.length(); i++) {
+                    try {
+                        JSONObject jsonDeck = jsonDecks.getJSONObject(i);
+                        String name = jsonDeck.getString("name");
+                        String colorString = jsonDeck.getString("color");
+                        int deckColor = Color.parseColor(colorString);
+                        Deck deck = new Deck(name, deckColor);
+                        JSONArray jsonCards = jsonDeck.getJSONArray("cards");
+                        for (int j = 0; j < jsonCards.length(); j++) {
+                            try {
+                                JSONObject jsonCard = jsonCards.getJSONObject(j);
+                                JSONArray jsonCardContents = jsonCard.getJSONArray("contents");
+                                Card card = new Card();
+                                for (int k = 0; k < jsonCardContents.length(); k++) {
+                                    try {
+                                        JSONObject jsonCardContentItem = jsonCardContents.getJSONObject(k);
+                                        String type = jsonCardContentItem.getString("type");
+                                        String content = jsonCardContentItem.getString("content");
+                                        ContentPart.ContentType contentType;
+                                        switch (type) {
+                                            case "header":
+                                                contentType = ContentPart.ContentType.Header;
+                                                break;
+                                            case "image":
+                                                contentType = ContentPart.ContentType.Image;
+                                                break;
+                                            case "plain":
+                                            default:
+                                                contentType = ContentPart.ContentType.Plain;
+                                                break;
+                                        }
+
+                                        card.appendContents(new ContentPart(contentType, content));
+                                    } catch (Exception ignored) {
+
+                                    }
+                                }
+                                deck.addCard(card);
+                            } catch (Exception ignored) {
+
+                            }
+                        }
+                        _decks.add(deck);
+                    } catch (Exception ignored) {
+
+                    }
+                }
+            }
+        } catch (Exception ignored) {
+
+        }
     }
 
     public static int getDecksCount() {
@@ -40,8 +85,7 @@ public class DecksContainer {
     public static Deck getDeck(int index) {
         if (index < _decks.size()) {
             return _decks.get(index);
-        }
-        else {
+        } else {
             return null;
         }
     }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/deckActivityRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_text"
@@ -32,7 +33,7 @@
             android:layout_gravity="center"
             android:layout_weight="83"
             android:background="@drawable/arrow_back_83_68"
-            android:backgroundTint="#87704A"/>
+            android:backgroundTint="#87704A" />
 
         <Space
             android:layout_width="0dp"
@@ -42,7 +43,7 @@
         <Button
             android:id="@+id/btn_deck1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="73"
             android:background="@drawable/card_change_1_off" />
 
@@ -54,7 +55,7 @@
         <Button
             android:id="@+id/btn_deck2"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="73"
             android:background="@drawable/card_change_2_off" />
 
@@ -66,7 +67,7 @@
         <Button
             android:id="@+id/btn_deck3"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="73"
             android:background="@drawable/card_change_3_off" />
 
@@ -78,10 +79,10 @@
         <Button
             android:id="@+id/btn_deck4"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="73"
             android:background="@drawable/card_change_4_off"
-            android:foreground="@drawable/card_change_bw_on3"/>
+            android:foreground="@drawable/card_change_bw_on3" />
 
         <Space
             android:layout_width="0dp"
@@ -91,41 +92,78 @@
         <Button
             android:id="@+id/btn_deck5"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="73"
             android:background="@drawable/card_change_5_off"
             android:foreground="@drawable/card_change_bw_on3" />
     </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="94" />
+
+    <TextView
+        android:id="@+id/deckNameHeaderText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="-7dp"
+        android:layout_weight="47"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Гуманистические"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#2f5c78"
+        android:textSize="15sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1674"
+        android:layout_weight="1473"
         android:orientation="vertical">
 
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/mainPager"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:baselineAligned="false">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:baselineAligned="false"
+            android:weightSum="1080">
 
-            <android.support.v4.view.PagerTabStrip
-                android:id="@+id/mainPagerTabStrip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="848"
+                android:orientation="vertical">
 
-        </android.support.v4.view.ViewPager>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/mainPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:baselineAligned="false">
 
-        <SeekBar
-            android:id="@+id/mainSeekBar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_weight="24" />
+                    <android.support.v4.view.PagerTabStrip
+                        android:id="@+id/mainPagerTabStrip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom" />
+
+                </android.support.v4.view.ViewPager>
+
+                <SeekBar
+                    android:id="@+id/mainSeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="24"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>

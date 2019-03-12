@@ -2,25 +2,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ba"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/contentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="20dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:paddingTop="25dp">
-
-        <TextView
-            android:id="@+id/fragmentContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dalton_maag_effra_regular"
-            android:textColor="@color/myBlack"
-            android:textSize="16.7sp" />
+        android:orientation="vertical">
     </LinearLayout>
 
 

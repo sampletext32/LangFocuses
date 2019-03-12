@@ -1,13 +1,24 @@
 package com.sampletext.langfocuses;
 
+import java.util.ArrayList;
+
 public class Card {
 
-    private String _content;
+    private ArrayList<ContentPart> _contents;
 
-    public Card(String content) {
-        _content = content;
+    public Card() {
+        _contents = new ArrayList<>();
     }
-    public String getContent() {
-        return _content;
+    public void appendContents(ContentPart contentPart)
+    {
+        _contents.add(contentPart);
+    }
+    public int getContentsLength()
+    {
+        return _contents.size();
+    }
+    public ContentPart getContentsPart(int index)
+    {
+        return _contents.get(index);
     }
 }
