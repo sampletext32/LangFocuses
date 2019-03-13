@@ -39,6 +39,11 @@ public class PageFragment extends Fragment {
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.pager_fragment, null);
         _contentContainer = view.findViewById(R.id.contentContainer);
@@ -56,7 +61,7 @@ public class PageFragment extends Fragment {
                     tv.setText(card.getContentsPart(i).get_content());
                     tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
                     tv.setTextColor(_deck.getDeckColor());
-                    ((ViewGroup)_contentContainer).addView(tv);
+                    _contentContainer.addView(tv);
                 }
                 break;
                 case Plain: {
@@ -66,7 +71,7 @@ public class PageFragment extends Fragment {
                     tv.setTypeface(typefaceRegular);
                     tv.setText(card.getContentsPart(i).get_content());
                     tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-                    ((ViewGroup)_contentContainer).addView(tv);
+                    _contentContainer.addView(tv);
                 }
                 break;
                 case Image: {
@@ -76,7 +81,7 @@ public class PageFragment extends Fragment {
                     byte[] bytes = Base64.decode(card.getContentsPart(i).get_content().substring(card.getContentsPart(i).get_content().indexOf(",")  + 1), Base64.DEFAULT);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                     iv.setImageBitmap(bitmap);
-                    ((ViewGroup)_contentContainer).addView(iv);
+                    _contentContainer.addView(iv);
                 }
                 break;
             }

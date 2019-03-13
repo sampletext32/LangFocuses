@@ -45,7 +45,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="73"
-            android:background="@drawable/card_change_1_off" />
+            android:background="@drawable/card_change_1_off"
+            android:tag="1" />
 
         <Space
             android:layout_width="0dp"
@@ -57,7 +58,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="73"
-            android:background="@drawable/card_change_2_off" />
+            android:background="@drawable/card_change_2_off"
+            android:tag="2" />
 
         <Space
             android:layout_width="0dp"
@@ -69,7 +71,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="73"
-            android:background="@drawable/card_change_3_off" />
+            android:background="@drawable/card_change_3_off"
+            android:tag="3" />
 
         <Space
             android:layout_width="0dp"
@@ -82,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="73"
             android:background="@drawable/card_change_4_off"
-            android:foreground="@drawable/card_change_bw_on3" />
+            android:tag="4" />
 
         <Space
             android:layout_width="0dp"
@@ -95,22 +98,23 @@
             android:layout_height="wrap_content"
             android:layout_weight="73"
             android:background="@drawable/card_change_5_off"
-            android:foreground="@drawable/card_change_bw_on3" />
+            android:foreground="@drawable/card_change_bw_on3"
+            android:tag="5" />
     </LinearLayout>
 
-    <Space
+    <!--<Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="94" />
-
+        android:layout_weight="94" />-->
+    <!--weight 141 = 94+47 -->
     <TextView
         android:id="@+id/deckNameHeaderText"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="top"
         android:layout_marginTop="-7dp"
-        android:layout_weight="47"
+        android:layout_weight="141"
         android:fontFamily="@font/roboto_regular"
+        android:gravity="bottom"
         android:text="Гуманистические"
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -126,9 +130,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:baselineAligned="false"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:weightSum="1080">
 
             <LinearLayout
@@ -156,9 +160,9 @@
                     android:id="@+id/mainSeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="24"
                     android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"/>
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="24" />
             </LinearLayout>
 
         </LinearLayout>

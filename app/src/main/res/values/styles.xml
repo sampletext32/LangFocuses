@@ -10,6 +10,5 @@
 
     <style name="MyTheme.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
-
     </style>
 </resources>

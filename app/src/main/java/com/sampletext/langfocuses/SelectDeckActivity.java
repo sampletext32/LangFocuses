@@ -28,7 +28,6 @@ public class SelectDeckActivity extends AppCompatActivity {
             Intent   intent   = new Intent(SelectDeckActivity.this, DeckActivity.class);
             intent.putExtra("deck_id", position);
             startActivity(intent);
-            overridePendingTransition(0,0);
         }
     };
     //endregion
