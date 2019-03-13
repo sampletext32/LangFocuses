@@ -101,6 +101,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto_light"
                                 android:text="@string/aboutContent"
+                                android:autoLink="all"
                                 android:textColor="#000000"
                                 android:textSize="18dp" />
                         </LinearLayout>

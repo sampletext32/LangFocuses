@@ -100,7 +100,6 @@ public class DeckActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            pagerAdapter.notifyDataSetChanged();
             if (lastPos != position) // checking to prevent recursive calls from seekbar to pager and backwards
             {
                 lastPos = position;
