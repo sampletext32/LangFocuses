@@ -1,20 +1,13 @@
 package com.sampletext.langfocuses;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 public class SelectDeckActivity extends AppCompatActivity {
@@ -24,8 +17,8 @@ public class SelectDeckActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            int      position = Integer.parseInt(v.getTag().toString());
-            Intent   intent   = new Intent(SelectDeckActivity.this, DeckActivity.class);
+            int position = Integer.parseInt(v.getTag().toString());
+            Intent intent = new Intent(SelectDeckActivity.this, DeckActivity.class);
             intent.putExtra("deck_id", position);
             startActivity(intent);
         }
@@ -66,8 +59,6 @@ public class SelectDeckActivity extends AppCompatActivity {
     };
     //endregion
 
-    private Button mBtnBack;
-
     //region btnBackOnTouchListener
     private View.OnTouchListener btnBackOnTouchListener = new View.OnTouchListener() {
 
@@ -80,26 +71,31 @@ public class SelectDeckActivity extends AppCompatActivity {
                     break;
                 case MotionEvent.ACTION_HOVER_EXIT:
                 case MotionEvent.ACTION_UP:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_CANCEL:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 default:
             }
             return false;
         }
     };
+    //endregion
 
-    private LinearLayout mDecksContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_deck);
 
+        Static.SetPortrait(this);
+
+        View root = findViewById(R.id.selectdeck_root);
+        Static.SetViewScale(root);
+
         TextView mHeader = findViewById(R.id.selectdeck_header);
 
-        mBtnBack = findViewById(R.id.btn_back);
+        Button mBtnBack = findViewById(R.id.btn_back);
         mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
         mBtnBack.setOnTouchListener(btnBackOnTouchListener);
         mBtnBack.setOnClickListener(btnBackOnClickListener);

@@ -7,14 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class HowToUseActivity extends AppCompatActivity {
-
-    private TextView mInfoText;
-
-    private Button mBtnBack;
 
     //region btnBackOnTouchListener
     private View.OnTouchListener btnBackOnTouchListener = new View.OnTouchListener() {
@@ -28,10 +23,10 @@ public class HowToUseActivity extends AppCompatActivity {
                     break;
                 case MotionEvent.ACTION_HOVER_EXIT:
                 case MotionEvent.ACTION_UP:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_CANCEL:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 default:
             }
@@ -52,17 +47,23 @@ public class HowToUseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_use);
-        mInfoText = findViewById(R.id.howtouse_content);
-        TextView mHeaderText = findViewById(R.id.howtouse_header);
-        mBtnBack = findViewById(R.id.btn_back);
+
+        Static.SetPortrait(this);
+
+        View root = findViewById(R.id.howtouse_root);
+        Static.SetViewScale(root);
+
+        TextView infoText = findViewById(R.id.howtouse_content);
+        TextView headerText = findViewById(R.id.howtouse_header);
+        Button btnBack = findViewById(R.id.btn_back);
 
         if (Static.DiagonalInches >= 6.5f) {
-            mHeaderText.setTextSize(mHeaderText.getTextSize() * Static.ScaleFactor);
-            mInfoText.setTextSize(mInfoText.getTextSize() * Static.ScaleFactor);
+            headerText.setTextSize(headerText.getTextSize() * Static.ScaleFactor);
+            infoText.setTextSize(infoText.getTextSize() * Static.ScaleFactor);
         }
 
-        mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
-        mBtnBack.setOnTouchListener(btnBackOnTouchListener);
-        mBtnBack.setOnClickListener(btnBackOnClickListener);
+        btnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
+        btnBack.setOnTouchListener(btnBackOnTouchListener);
+        btnBack.setOnClickListener(btnBackOnClickListener);
     }
 }

@@ -3,7 +3,6 @@ package com.sampletext.langfocuses;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class MyFragmentPagerAdapter extends FragmentStatePagerAdapter {
@@ -14,7 +13,7 @@ public class MyFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     private Deck _deck;
 
-    public void set_deck(Deck _deck) {
+    void set_deck(Deck _deck) {
         this._deck = _deck;
 
     }

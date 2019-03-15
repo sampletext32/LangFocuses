@@ -1,5 +1,6 @@
 package com.sampletext.langfocuses;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -7,15 +8,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.util.concurrent.TimeUnit;
 
 public class PageFragment extends Fragment {
 
@@ -30,7 +28,6 @@ public class PageFragment extends Fragment {
         pageFragment._pageIndex = page;
         pageFragment._deck = deck;
         return pageFragment;
-
     }
 
     @Override
@@ -39,14 +36,10 @@ public class PageFragment extends Fragment {
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.pager_fragment, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.pager_fragment, null);
         _contentContainer = view.findViewById(R.id.contentContainer);
+
         Card card = _deck.getCard(_pageIndex);
         Typeface typefaceMedium = view.getContext().getResources().getFont(R.font.roboto_medium);
         Typeface typefaceRegular = view.getContext().getResources().getFont(R.font.roboto_regular);

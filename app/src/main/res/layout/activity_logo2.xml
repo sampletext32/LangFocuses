@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     style="fullscreenActivity"
+    android:id="@+id/logo2_root"
     android:background="#907754"
     tools:context=".Logo2Activity">
 

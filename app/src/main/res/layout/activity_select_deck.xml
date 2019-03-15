@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/selectdeck_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_text"
@@ -261,7 +262,7 @@
             android:text="Анти-фокусы языка"
             android:textAllCaps="false"
             android:textColor="#8370b4"
-            android:textSize="29sp" />
+            android:textSize="28sp" />
     </LinearLayout>
     <!-- 1080 - 2 * 72 = 936-->
 

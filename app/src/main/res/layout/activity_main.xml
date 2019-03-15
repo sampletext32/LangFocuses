@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/MyTheme.FullScreen"
@@ -33,8 +34,8 @@
             android:layout_height="0px"
             android:layout_weight="135"
             android:fontFamily="@font/fk_mandarin"
-            android:text="Антифокусы"
             android:gravity="center"
+            android:text="Антифокусы"
             android:textColor="#574435"
             android:textSize="45sp" />
 
@@ -49,8 +50,8 @@
             android:layout_height="0px"
             android:layout_weight="135"
             android:fontFamily="@font/fk_mandarin"
-            android:text="языка"
             android:gravity="center"
+            android:text="языка"
             android:textColor="#574435"
             android:textSize="45sp" />
 

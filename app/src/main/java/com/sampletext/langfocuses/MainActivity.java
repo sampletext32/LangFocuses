@@ -1,5 +1,6 @@
 package com.sampletext.langfocuses;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,15 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-
-    private Button mBtnChooseDeck;
-
-    private Button mBtnAbout;
-
-    private ImageView mBackgroundImageView;
-
-    private Button mBtnHowToUse;
-
 
     View.OnTouchListener btn_Highlight_OnTouchListener = new View.OnTouchListener() {
 
@@ -69,34 +61,39 @@ public class MainActivity extends Activity {
         }
     };
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Static.SetPortrait(this);
+
+        View root = findViewById(R.id.main_root);
+        Static.SetViewScale(root);
+
         TextView header_antifocusy = findViewById(R.id.main_header_antifocusy);
         TextView header_yazyka = findViewById(R.id.main_header_yazyka);
 
-        mBtnChooseDeck = findViewById(R.id.btn_choose_deck);
-        mBtnAbout = findViewById(R.id.btn_about);
-        mBackgroundImageView = findViewById(R.id.backgroundImageView);
-        mBtnHowToUse = findViewById(R.id.btn_how_to_use);
+        Button _btnChooseDeck = findViewById(R.id.btn_choose_deck);
+        Button _btnAbout = findViewById(R.id.btn_about);
+        Button _btnHowToUse = findViewById(R.id.btn_how_to_use);
 
         if (Static.DiagonalInches >= 6.5f) {
             header_antifocusy.setTextSize(header_antifocusy.getTextSize() * Static.ScaleFactor);
             header_yazyka.setTextSize(header_yazyka.getTextSize() * Static.ScaleFactor);
-            mBtnAbout.setTextSize(mBtnAbout.getTextSize() * Static.ScaleFactor);
-            mBtnChooseDeck.setTextSize(mBtnChooseDeck.getTextSize() * Static.ScaleFactor);
-            mBtnHowToUse.setTextSize(mBtnHowToUse.getTextSize() * Static.ScaleFactor);
+            _btnAbout.setTextSize(_btnAbout.getTextSize() * Static.ScaleFactor);
+            _btnChooseDeck.setTextSize(_btnChooseDeck.getTextSize() * Static.ScaleFactor);
+            _btnHowToUse.setTextSize(_btnHowToUse.getTextSize() * Static.ScaleFactor);
         }
 
-        mBtnHowToUse.setOnTouchListener(btn_Highlight_OnTouchListener);
-        mBtnChooseDeck.setOnTouchListener(btn_Highlight_OnTouchListener);
-        mBtnAbout.setOnTouchListener(btn_Highlight_OnTouchListener);
+        _btnHowToUse.setOnTouchListener(btn_Highlight_OnTouchListener);
+        _btnChooseDeck.setOnTouchListener(btn_Highlight_OnTouchListener);
+        _btnAbout.setOnTouchListener(btn_Highlight_OnTouchListener);
 
-        mBtnHowToUse.setOnClickListener(BtnHowToUse_OnClickListener);
-        mBtnChooseDeck.setOnClickListener(BtnChooseDeck_OnClickListener);
-        mBtnAbout.setOnClickListener(BtnAbout_OnClickListener);
+        _btnHowToUse.setOnClickListener(BtnHowToUse_OnClickListener);
+        _btnChooseDeck.setOnClickListener(BtnChooseDeck_OnClickListener);
+        _btnAbout.setOnClickListener(BtnAbout_OnClickListener);
     }
 }
 

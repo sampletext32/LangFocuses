@@ -1,5 +1,6 @@
 package com.sampletext.langfocuses;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -11,9 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -22,13 +21,18 @@ import android.widget.Toast;
 public class DeckActivity extends AppCompatActivity {
 
     int _displayedCardIndex = 0;
-    LinearLayout _deckActivityRoot;
 
-    Button btnsDeck[] = new Button[5];
+    Button _deckChangeButton[] = new Button[5];
 
-    MyFragmentPagerAdapter pagerAdapter;
+    MyFragmentPagerAdapter _pagerAdapter;
 
-    Drawable btnsDeck_Overlay;
+    Drawable _deckChangeButtons_Overlay;
+
+    private int _displayedDeckId;
+
+    private SeekBar _mainSeekBar;
+
+    private ViewPager _mainPager;
 
     //region btnBackOnClickListener
     View.OnClickListener btnBackOnClickListener = new View.OnClickListener() {
@@ -38,21 +42,12 @@ public class DeckActivity extends AppCompatActivity {
             finish();
         }
     };
-
-    private int _displayedDeckId;
-
-    private PagerTabStrip mMainPagerTabStrip;
-
-    private SeekBar mMainSeekBar;
-
-    private ViewPager mMainPager;
-
-    private Button mBtnBack;
     //endregion
 
     //region btnBackOnTouchListener
     private View.OnTouchListener btnBackOnTouchListener = new View.OnTouchListener() {
 
+        @SuppressLint("ClickableViewAccessibility")
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
@@ -62,10 +57,10 @@ public class DeckActivity extends AppCompatActivity {
                     break;
                 case MotionEvent.ACTION_HOVER_EXIT:
                 case MotionEvent.ACTION_UP:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 case MotionEvent.ACTION_CANCEL:
-                    mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
                     break;
                 default:
             }
@@ -75,12 +70,11 @@ public class DeckActivity extends AppCompatActivity {
     //endregion
 
     //region deckClickListener
-    View.OnClickListener btnDeckClickListener = new View.OnClickListener() {
+    final View.OnClickListener btnDeckClickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
-            int position = Integer.parseInt(v.getTag().toString()) - 1;
-            _displayedDeckId = position;
+            _displayedDeckId = Integer.parseInt(v.getTag().toString()) - 1;
             initializeDeck();
         }
     };
@@ -101,8 +95,8 @@ public class DeckActivity extends AppCompatActivity {
             if (lastPos != position) // checking to prevent recursive calls from seekbar to pager and backwards
             {
                 lastPos = position;
-                mMainSeekBar.setProgress(position);
                 _displayedCardIndex = position;
+                _mainSeekBar.setProgress(position);
             }
         }
 
@@ -123,8 +117,8 @@ public class DeckActivity extends AppCompatActivity {
             if (lastPos != i)// checking to prevent recursive calls from seekbar to pager and backwords
             {
                 lastPos = i;
-                mMainPager.setCurrentItem(i, true);
                 _displayedCardIndex = i;
+                _mainPager.setCurrentItem(i, true);
             }
         }
 
@@ -140,100 +134,89 @@ public class DeckActivity extends AppCompatActivity {
     };
     //endregion
 
-    private TextView mDeckHeader;
+    private TextView _deckHeader;
 
     private void setLocalPageIndex(int index) {
-        mMainSeekBar.setProgress(index);
-        mMainPager.setCurrentItem(index, true);
+        _mainSeekBar.setProgress(index);
+        _mainPager.setCurrentItem(index, true);
     }
 
-    //endregion
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deck);
+    void findAndSetupDeckButtons() {
+        _deckChangeButton[0] = findViewById(R.id.btn_deck1);
+        _deckChangeButton[1] = findViewById(R.id.btn_deck2);
+        _deckChangeButton[2] = findViewById(R.id.btn_deck3);
+        _deckChangeButton[3] = findViewById(R.id.btn_deck4);
+        _deckChangeButton[4] = findViewById(R.id.btn_deck5);
 
-        _deckActivityRoot = findViewById(R.id.deckActivityRoot);
-
-        btnsDeck[0] = findViewById(R.id.btn_deck1);
-        btnsDeck[1] = findViewById(R.id.btn_deck2);
-        btnsDeck[2] = findViewById(R.id.btn_deck3);
-        btnsDeck[3] = findViewById(R.id.btn_deck4);
-        btnsDeck[4] = findViewById(R.id.btn_deck5);
-
-        for (int i = 0; i < btnsDeck.length; i++) {
-            btnsDeck[i].setOnClickListener(btnDeckClickListener);
+        for (Button a_deckChangeButton : _deckChangeButton) {
+            a_deckChangeButton.setOnClickListener(btnDeckClickListener);
         }
+    }
 
-        btnsDeck_Overlay = getResources().getDrawable(R.drawable.card_change_bw_on3);
+    void loadDeckButtonsOverlay() {
+        _deckChangeButtons_Overlay = getResources().getDrawable(R.drawable.card_change_bw_on3, getTheme());
+    }
 
-
-        //region This Weird thing is needed to wait for app to calculate sizes
-        _deckActivityRoot.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-
-            View view;
-
-            @Override
-            public boolean onPreDraw() {
-                if (view.getViewTreeObserver().isAlive())
-                    view.getViewTreeObserver().removeOnPreDrawListener(this);
-
-                //region !!!ПРОТЕСТИТЬ НА ТЕЛЕФОНЕ!!!
-                if (_deckActivityRoot.getHeight() > 1920) {
-                    float factor = 1920f / _deckActivityRoot.getHeight();
-                    factor = factor + (1 - factor) / 2;
-                    _deckActivityRoot.setScaleY(factor);
-                }
-                //endregion
-
-                return false;
-            }
-
-            ViewTreeObserver.OnPreDrawListener setView(View v) {
-                view = v;
-                return this;
-            }
-        }.setView(_deckActivityRoot));
-        //endregion
-
-
-        mMainPagerTabStrip = findViewById(R.id.mainPagerTabStrip);
-        mMainSeekBar = findViewById(R.id.mainSeekBar);
-        mMainPager = findViewById(R.id.mainPager);
-        mDeckHeader = findViewById(R.id.deckNameHeaderText);
-
-        pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
-        mMainPager.addOnPageChangeListener(pageChangeListener);
-
-        int deck_id = this.getIntent().getIntExtra("deck_id", -1);
+    void launchDeckFromIntent() {
+        int deck_id = getIntent().getIntExtra("deck_id", -1);
         if (deck_id == -1) {
             Toast.makeText(this, "Deck not found", Toast.LENGTH_SHORT).show();
             finish();
         } else {
             _displayedDeckId = deck_id;
             initializeDeck();
-            mMainPager.setAdapter(pagerAdapter);
         }
+    }
 
-        mBtnBack = findViewById(R.id.btn_back);
-        mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
-        mBtnBack.setOnTouchListener(btnBackOnTouchListener);
-        mBtnBack.setOnClickListener(btnBackOnClickListener);
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_deck);
 
-        mMainSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
+        Static.SetPortrait(this);
+
+        View root = findViewById(R.id.deckActivityRoot);
+        Static.SetViewScale(root);
+
+        findAndSetupDeckButtons();
+        loadDeckButtonsOverlay();
+
+        PagerTabStrip mainPagerTabStrip = findViewById(R.id.mainPagerTabStrip);
+
+        _mainSeekBar = findViewById(R.id.mainSeekBar);
+        _mainSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
+
+        _mainPager = findViewById(R.id.mainPager);
+        _mainPager.addOnPageChangeListener(pageChangeListener);
+
+        _pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+
+        _deckHeader = findViewById(R.id.deckNameHeaderText);
+
+        launchDeckFromIntent();
+
+        _mainPager.setAdapter(_pagerAdapter);
+
+        Button btnBack = findViewById(R.id.btn_back);
+        btnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
+        btnBack.setOnTouchListener(btnBackOnTouchListener);
+        btnBack.setOnClickListener(btnBackOnClickListener);
+
+
         if (Static.DiagonalInches >= 6.5f) {
-            mDeckHeader.setTextSize(mDeckHeader.getTextSize() * Static.ScaleFactor);
-            mDeckHeader.setTextSize(mDeckHeader.getTextSize() * Static.ScaleFactor);
-            mMainPagerTabStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20 * Static.ScaleFactor);
+            _deckHeader.setTextSize(_deckHeader.getTextSize() * Static.ScaleFactor);
+            _deckHeader.setTextSize(_deckHeader.getTextSize() * Static.ScaleFactor);
+            mainPagerTabStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20 * Static.ScaleFactor);
         }
     }
 
     private void initializeDeck() {
         try {
-            for (Button btnDeck : btnsDeck) {
+            for (Button btnDeck : _deckChangeButton) {
                 btnDeck.setForeground(null);
             }
-            btnsDeck[_displayedDeckId].setForeground(btnsDeck_Overlay);
+            _deckChangeButton[_displayedDeckId].setForeground(_deckChangeButtons_Overlay);
 
             //проверяем перед сменой колоды, чтобы 16 карта не выскочила на другие
             if (_displayedCardIndex == 15) {
@@ -243,22 +226,22 @@ public class DeckActivity extends AppCompatActivity {
 
             Deck deck = DecksContainer.getDeck(_displayedDeckId);
 
-            pagerAdapter.set_deck(deck);
-            pagerAdapter.notifyDataSetChanged();
+            _pagerAdapter.set_deck(deck);
+            _pagerAdapter.notifyDataSetChanged();
 
             assert deck != null;
-            mDeckHeader.setText(deck.getHeader());
-            mDeckHeader.setTextColor(deck.getDeckColor());
+            _deckHeader.setText(deck.getHeader());
+            _deckHeader.setTextColor(deck.getDeckColor());
 
-            mMainSeekBar.getThumb().setColorFilter(
+            _mainSeekBar.getThumb().setColorFilter(
                     deck.getDeckColor(), PorterDuff.Mode.SRC_ATOP);
-            mMainSeekBar.getProgressDrawable().setColorFilter(
+            _mainSeekBar.getProgressDrawable().setColorFilter(
                     deck.getDeckColor(), PorterDuff.Mode.SRC_ATOP);
-            mMainSeekBar.setMax((pagerAdapter.getCount() - 1));
+            _mainSeekBar.setMax((deck.getCardsCount() - 1));
 
 
         } catch (Exception ignored) {
-            //Toast.makeText(getApplicationContext(), ignored.getMessage(), Toast.LENGTH_SHORT).show();
+
         }
 
     }
