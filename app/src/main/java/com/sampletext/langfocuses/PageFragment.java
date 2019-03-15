@@ -59,7 +59,28 @@ public class PageFragment extends Fragment {
 
                     tv.setTypeface(typefaceMedium);
                     tv.setText(card.getContentsPart(i).get_content());
-                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
+                    if (Static.DiagonalInches >= 6.5) {
+                        tv.setTextSize(26 * Static.ScaleFactor);
+                    }
+                    else {
+                        tv.setTextSize(20);
+                    }
+                    tv.setTextColor(_deck.getDeckColor());
+                    _contentContainer.addView(tv);
+                }
+                break;
+                case BHeader: {
+                    TextView tv = new TextView(view.getContext());
+                    tv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                    tv.setTypeface(typefaceMedium);
+                    tv.setText(card.getContentsPart(i).get_content());
+                    if (Static.DiagonalInches >= 6.5) {
+                        tv.setTextSize(36 * Static.ScaleFactor);
+                    }
+                    else {
+                        tv.setTextSize(30);
+                    }
                     tv.setTextColor(_deck.getDeckColor());
                     _contentContainer.addView(tv);
                 }
@@ -70,7 +91,12 @@ public class PageFragment extends Fragment {
 
                     tv.setTypeface(typefaceRegular);
                     tv.setText(card.getContentsPart(i).get_content());
-                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                    if (Static.DiagonalInches >= 6.5) {
+                        tv.setTextSize(22 * Static.ScaleFactor);
+                    }
+                    else {
+                        tv.setTextSize(18);
+                    }
                     _contentContainer.addView(tv);
                 }
                 break;
@@ -87,6 +113,21 @@ public class PageFragment extends Fragment {
             }
 
         }
+
+        TextView tv = new TextView(view.getContext());
+        tv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        tv.setTypeface(typefaceMedium);
+        tv.setText(getResources().getString(R.string.aboutShortContent));
+
+        if (Static.DiagonalInches >= 6.5) {
+            tv.setTextSize(22 * Static.ScaleFactor);
+        }
+        else {
+            tv.setTextSize(18);
+        }
+        _contentContainer.addView(tv);
+
         return view;
     }
 }

@@ -114,9 +114,8 @@
         android:layout_marginTop="-7dp"
         android:layout_weight="141"
         android:fontFamily="@font/roboto_regular"
-        android:gravity="bottom"
+        android:gravity="bottom|center"
         android:text="Гуманистические"
-        android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#2f5c78"
         android:textSize="15sp" />

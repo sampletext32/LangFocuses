@@ -60,13 +60,14 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/howtouse_header"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="-12dp"
                 android:fontFamily="@font/roboto_regular"
                 android:text="Как пользоваться"
                 android:textColor="#574435"
-                android:textSize="35dp" />
+                android:textSize="35sp" />
         </LinearLayout>
 
 
@@ -94,8 +95,8 @@
                     <ScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingLeft="5dp"
-                        android:paddingEnd="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingEnd="10dp"
                         android:paddingRight="5dp"
                         android:paddingBottom="10dp">
 
@@ -104,13 +105,13 @@
                             android:layout_height="wrap_content">
 
                             <TextView
-                                android:id="@+id/infoText"
+                                android:id="@+id/howtouse_content"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_light"
+                                android:fontFamily="@font/roboto_regular"
                                 android:text="@string/instructions"
                                 android:textColor="#000000"
-                                android:textSize="18dp" />
+                                android:textSize="18sp" />
                         </LinearLayout>
                     </ScrollView>
                 </LinearLayout>

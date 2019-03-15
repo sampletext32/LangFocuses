@@ -50,8 +50,12 @@ public class Logo2Activity extends Activity {
         logoImageView2 = findViewById(R.id.logoImageView2);
         loadingText = findViewById(R.id.loadingText);
 
+        if (Static.DiagonalInches >= 6.5f) {
+            loadingText.setTextSize(loadingText.getTextSize() * Static.ScaleFactor);
+        }
+
         float animScaleStart = 0.95f;
-        float animScaleEnd   = 1.00f;
+        float animScaleEnd = 1.00f;
         float animRelativeTo = 0.5f;
 
         Animation anim = new ScaleAnimation(
@@ -85,8 +89,7 @@ public class Logo2Activity extends Activity {
                         Thread.sleep(300);
                         dots++;
                         dots %= 4;
-                    }
-                    catch (InterruptedException e) {
+                    } catch (InterruptedException e) {
                         break;
                     }
                 }

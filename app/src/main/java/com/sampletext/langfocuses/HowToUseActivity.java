@@ -52,8 +52,14 @@ public class HowToUseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_use);
-        mInfoText = findViewById(R.id.infoText);
+        mInfoText = findViewById(R.id.howtouse_content);
+        TextView mHeaderText = findViewById(R.id.howtouse_header);
         mBtnBack = findViewById(R.id.btn_back);
+
+        if (Static.DiagonalInches >= 6.5f) {
+            mHeaderText.setTextSize(mHeaderText.getTextSize() * Static.ScaleFactor);
+            mInfoText.setTextSize(mInfoText.getTextSize() * Static.ScaleFactor);
+        }
 
         mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
         mBtnBack.setOnTouchListener(btnBackOnTouchListener);

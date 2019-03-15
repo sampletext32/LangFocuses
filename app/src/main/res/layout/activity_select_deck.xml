@@ -37,29 +37,21 @@
     </LinearLayout>
 
 
+    <TextView
+        android:id="@+id/selectdeck_header"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="144"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center|bottom"
+        android:text="Выбрать колоду"
+        android:textColor="#7f6e52"
+        android:textSize="40sp" />
+
     <Space
         android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="25" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="246"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:gravity="center|top"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="-12dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Выбрать колоду"
-            android:textColor="#7f6e52"
-            android:textSize="40dp" /><!-- margin чтобы текст сместить вверх без зазоров-->
-    </LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="145" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,7 +88,7 @@
             android:text="Гуманистические"
             android:textAllCaps="false"
             android:textColor="#669766"
-            android:textSize="29dp" />
+            android:textSize="29sp" />
     </LinearLayout>
 
     <Space
@@ -140,7 +132,7 @@
             android:text="Боевые"
             android:textAllCaps="false"
             android:textColor="#986c6c"
-            android:textSize="29dp" />
+            android:textSize="29sp" />
     </LinearLayout>
 
     <Space
@@ -183,7 +175,7 @@
             android:text="Провокативные"
             android:textAllCaps="false"
             android:textColor="#5a88a5"
-            android:textSize="29dp" />
+            android:textSize="29sp" />
     </LinearLayout>
 
     <Space
@@ -226,7 +218,7 @@
             android:text="Гуру"
             android:textAllCaps="false"
             android:textColor="#6b6b6b"
-            android:textSize="29dp" />
+            android:textSize="29sp" />
     </LinearLayout>
 
     <Space
@@ -266,10 +258,10 @@
             android:background="@drawable/button_deck_antifya"
             android:fontFamily="@font/roboto_regular"
             android:tag="4"
-            android:text="Антифя"
+            android:text="Анти-фокусы языка"
             android:textAllCaps="false"
             android:textColor="#8370b4"
-            android:textSize="29dp" />
+            android:textSize="29sp" />
     </LinearLayout>
     <!-- 1080 - 2 * 72 = 936-->
 

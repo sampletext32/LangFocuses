@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class AboutActivity extends AppCompatActivity {
@@ -47,15 +46,19 @@ public class AboutActivity extends AppCompatActivity {
         }
     };
 
-    private TextView mInfoText;
-
     //endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        mInfoText = findViewById(R.id.infoText);
+        TextView mContent = findViewById(R.id.about_content);
+        TextView mHeader = findViewById(R.id.about_header);
         mBtnBack = findViewById(R.id.btn_back);
+
+        if (Static.DiagonalInches >= 6.5f) {
+            mContent.setTextSize(mContent.getTextSize() * Static.ScaleFactor);
+            mHeader.setTextSize(mHeader.getTextSize() * Static.ScaleFactor);
+        }
 
         mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
         mBtnBack.setOnTouchListener(btnBackOnTouchListener);

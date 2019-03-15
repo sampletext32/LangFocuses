@@ -13,6 +13,9 @@ public class Static {
     public static float DiagonalInches = 0f;
 
     public static float Density        = 0f;
+
+    public static float ScaleFactor = 0f;
+
     public static void SetPortrait(Activity a) {
         if (a != null) {
             a.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

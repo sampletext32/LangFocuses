@@ -4,6 +4,7 @@ public class ContentPart {
     public enum ContentType
     {
         Header,
+        BHeader,
         Plain,
         Image
     }

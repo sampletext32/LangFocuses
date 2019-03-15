@@ -97,6 +97,8 @@ public class SelectDeckActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_deck);
 
+        TextView mHeader = findViewById(R.id.selectdeck_header);
+
         mBtnBack = findViewById(R.id.btn_back);
         mBtnBack.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
         mBtnBack.setOnTouchListener(btnBackOnTouchListener);
@@ -121,5 +123,14 @@ public class SelectDeckActivity extends AppCompatActivity {
         Button deck4button = findViewById(R.id.button_deck_4);
         deck4button.setOnTouchListener(deckTouchListener);
         deck4button.setOnClickListener(deckClickListener);
+
+        if (Static.DiagonalInches >= 6.5f) {
+            mHeader.setTextSize(mHeader.getTextSize() * Static.ScaleFactor);
+            deck0button.setTextSize(deck0button.getTextSize() * Static.ScaleFactor);
+            deck1button.setTextSize(deck1button.getTextSize() * Static.ScaleFactor);
+            deck2button.setTextSize(deck2button.getTextSize() * Static.ScaleFactor);
+            deck3button.setTextSize(deck3button.getTextSize() * Static.ScaleFactor);
+            deck4button.setTextSize(deck4button.getTextSize() * Static.ScaleFactor);
+        }
     }
 }

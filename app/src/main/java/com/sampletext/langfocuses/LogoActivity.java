@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class LogoActivity extends Activity {
 
@@ -46,6 +47,12 @@ public class LogoActivity extends Activity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         Static.Density = metrics.density;
+
+        Static.ScaleFactor = metrics.densityDpi / 240f;
+
+        float yInches = metrics.heightPixels / metrics.ydpi;
+        float xInches = metrics.widthPixels / metrics.xdpi;
+        Static.DiagonalInches = (float) Math.sqrt(xInches * xInches + yInches * yInches);
 
         float animScaleStart = 1f;
         float animScaleEnd   = 1f;

@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -73,10 +74,21 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView header_antifocusy = findViewById(R.id.main_header_antifocusy);
+        TextView header_yazyka = findViewById(R.id.main_header_yazyka);
+
         mBtnChooseDeck = findViewById(R.id.btn_choose_deck);
         mBtnAbout = findViewById(R.id.btn_about);
         mBackgroundImageView = findViewById(R.id.backgroundImageView);
         mBtnHowToUse = findViewById(R.id.btn_how_to_use);
+
+        if (Static.DiagonalInches >= 6.5f) {
+            header_antifocusy.setTextSize(header_antifocusy.getTextSize() * Static.ScaleFactor);
+            header_yazyka.setTextSize(header_yazyka.getTextSize() * Static.ScaleFactor);
+            mBtnAbout.setTextSize(mBtnAbout.getTextSize() * Static.ScaleFactor);
+            mBtnChooseDeck.setTextSize(mBtnChooseDeck.getTextSize() * Static.ScaleFactor);
+            mBtnHowToUse.setTextSize(mBtnHowToUse.getTextSize() * Static.ScaleFactor);
+        }
 
         mBtnHowToUse.setOnTouchListener(btn_Highlight_OnTouchListener);
         mBtnChooseDeck.setOnTouchListener(btn_Highlight_OnTouchListener);

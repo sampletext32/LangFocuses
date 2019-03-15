@@ -1,6 +1,5 @@
 package com.sampletext.langfocuses;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -9,17 +8,16 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DeckActivity extends AppCompatActivity {
 
@@ -169,11 +167,33 @@ public class DeckActivity extends AppCompatActivity {
 
         btnsDeck_Overlay = getResources().getDrawable(R.drawable.card_change_bw_on3);
 
-        //region !!!ПРОТЕСТИТЬ НА ТЕЛЕФОНЕ!!!
-        /*if(_deckActivityRoot.getHeight() > 1920)
-        {
-            _deckActivityRoot.setScaleY(1920f / _deckActivityRoot.getHeight());
-        }*/
+
+        //region This Weird thing is needed to wait for app to calculate sizes
+        _deckActivityRoot.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+
+            View view;
+
+            @Override
+            public boolean onPreDraw() {
+                if (view.getViewTreeObserver().isAlive())
+                    view.getViewTreeObserver().removeOnPreDrawListener(this);
+
+                //region !!!ПРОТЕСТИТЬ НА ТЕЛЕФОНЕ!!!
+                if (_deckActivityRoot.getHeight() > 1920) {
+                    float factor = 1920f / _deckActivityRoot.getHeight();
+                    factor = factor + (1 - factor) / 2;
+                    _deckActivityRoot.setScaleY(factor);
+                }
+                //endregion
+
+                return false;
+            }
+
+            ViewTreeObserver.OnPreDrawListener setView(View v) {
+                view = v;
+                return this;
+            }
+        }.setView(_deckActivityRoot));
         //endregion
 
 
@@ -201,30 +221,32 @@ public class DeckActivity extends AppCompatActivity {
         mBtnBack.setOnClickListener(btnBackOnClickListener);
 
         mMainSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
+        if (Static.DiagonalInches >= 6.5f) {
+            mDeckHeader.setTextSize(mDeckHeader.getTextSize() * Static.ScaleFactor);
+            mDeckHeader.setTextSize(mDeckHeader.getTextSize() * Static.ScaleFactor);
+            mMainPagerTabStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20 * Static.ScaleFactor);
+        }
     }
 
     private void initializeDeck() {
         try {
-            for (int i = 0; i < btnsDeck.length; i++) {
-                btnsDeck[i].setForeground(null);
+            for (Button btnDeck : btnsDeck) {
+                btnDeck.setForeground(null);
             }
             btnsDeck[_displayedDeckId].setForeground(btnsDeck_Overlay);
 
             //проверяем перед сменой колоды, чтобы 16 карта не выскочила на другие
-            if(_displayedCardIndex == 15)
-            {
+            if (_displayedCardIndex == 15) {
                 _displayedCardIndex = 14;
             }
             setLocalPageIndex(_displayedCardIndex);
 
-
             Deck deck = DecksContainer.getDeck(_displayedDeckId);
-
-
 
             pagerAdapter.set_deck(deck);
             pagerAdapter.notifyDataSetChanged();
 
+            assert deck != null;
             mDeckHeader.setText(deck.getHeader());
             mDeckHeader.setTextColor(deck.getDeckColor());
 
@@ -236,7 +258,7 @@ public class DeckActivity extends AppCompatActivity {
 
 
         } catch (Exception ignored) {
-            Toast.makeText(getApplicationContext(), ignored.getMessage(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), ignored.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }

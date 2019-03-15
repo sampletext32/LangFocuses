@@ -28,14 +28,15 @@
             android:layout_weight="260" />
 
         <TextView
+            android:id="@+id/main_header_antifocusy"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="135"
             android:fontFamily="@font/fk_mandarin"
             android:text="Антифокусы"
-            android:textAlignment="center"
+            android:gravity="center"
             android:textColor="#574435"
-            android:textSize="45dp" />
+            android:textSize="45sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -43,14 +44,15 @@
             android:layout_weight="10" />
 
         <TextView
+            android:id="@+id/main_header_yazyka"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="135"
             android:fontFamily="@font/fk_mandarin"
             android:text="языка"
-            android:textAlignment="center"
+            android:gravity="center"
             android:textColor="#574435"
-            android:textSize="45dp" />
+            android:textSize="45sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -71,12 +73,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="800"
                 android:background="@drawable/rounded"
-                android:backgroundTint="#e6c287"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/how_to_use"
                 android:textAllCaps="false"
                 android:textColor="#574435"
-                android:textSize="22.5dp" />
+                android:textSize="22.5sp" />
         </LinearLayout>
 
 
@@ -99,12 +100,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="800"
                 android:background="@drawable/rounded"
-                android:backgroundTint="#e6c287"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/choose_deck"
                 android:textAllCaps="false"
                 android:textColor="#574435"
-                android:textSize="22.5dp" />
+                android:textSize="22.5sp" />
         </LinearLayout>
 
 
@@ -127,12 +127,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="800"
                 android:background="@drawable/rounded"
-                android:backgroundTint="#e6c287"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/about"
                 android:textAllCaps="false"
                 android:textColor="#574435"
-                android:textSize="22.5dp" />
+                android:textSize="22.5sp" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

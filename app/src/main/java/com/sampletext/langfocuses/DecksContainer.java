@@ -48,6 +48,9 @@ public class DecksContainer {
                                             case "header":
                                                 contentType = ContentPart.ContentType.Header;
                                                 break;
+                                            case "bheader":
+                                                contentType = ContentPart.ContentType.BHeader;
+                                                break;
                                             case "image":
                                                 contentType = ContentPart.ContentType.Image;
                                                 break;
