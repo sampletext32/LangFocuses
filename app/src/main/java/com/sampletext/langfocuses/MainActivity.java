@@ -69,8 +69,7 @@ public class MainActivity extends Activity {
 
         Static.SetPortrait(this);
 
-        View root = findViewById(R.id.main_root);
-        Static.SetViewScale(root);
+        Static.SetViewScale(findViewById(R.id.main_root));
 
         TextView header_antifocusy = findViewById(R.id.main_header_antifocusy);
         TextView header_yazyka = findViewById(R.id.main_header_yazyka);

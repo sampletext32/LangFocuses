@@ -50,8 +50,7 @@ public class HowToUseActivity extends AppCompatActivity {
 
         Static.SetPortrait(this);
 
-        View root = findViewById(R.id.howtouse_root);
-        Static.SetViewScale(root);
+        Static.SetViewScale(findViewById(R.id.howtouse_root));
 
         TextView infoText = findViewById(R.id.howtouse_content);
         TextView headerText = findViewById(R.id.howtouse_header);

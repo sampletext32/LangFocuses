@@ -8,7 +8,6 @@ import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class LogoActivity extends Activity {
 
@@ -33,17 +32,7 @@ public class LogoActivity extends Activity {
         }
     };
 
-    private ImageView logoImageView;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logo);
-        logoImageView = findViewById(R.id.logoImageView);
-
-        DecksContainer.init(this);
-
-        Static.SetPortrait(this);
-
+    void measureDisplay() {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         Static.Density = metrics.density;
@@ -53,9 +42,11 @@ public class LogoActivity extends Activity {
         float yInches = metrics.heightPixels / metrics.ydpi;
         float xInches = metrics.widthPixels / metrics.xdpi;
         Static.DiagonalInches = (float) Math.sqrt(xInches * xInches + yInches * yInches);
+    }
 
+    void setupAnimation(ImageView logoImageView) {
         float animScaleStart = 1f;
-        float animScaleEnd   = 1f;
+        float animScaleEnd = 1f;
         float animRelativeTo = 0.5f;
 
         Animation anim = new ScaleAnimation(
@@ -74,6 +65,23 @@ public class LogoActivity extends Activity {
         });
         anim.setAnimationListener(animationListener);
         logoImageView.setAnimation(anim);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_logo);
+        ImageView logoImageView = findViewById(R.id.logoImageView);
+
+        DecksContainer.init(this);
+
+        Static.SetPortrait(this);
+
+        Static.SetViewScale(findViewById(R.id.logo_root));
+
+        measureDisplay();
+
+        setupAnimation(logoImageView);
 
     }
 }

@@ -56,8 +56,7 @@ public class AboutActivity extends AppCompatActivity {
 
         Static.SetPortrait(this);
 
-        View root = findViewById(R.id.about_root);
-        Static.SetViewScale(root);
+        Static.SetViewScale(findViewById(R.id.about_root));
 
         TextView mContent = findViewById(R.id.about_content);
         TextView mHeader = findViewById(R.id.about_header);

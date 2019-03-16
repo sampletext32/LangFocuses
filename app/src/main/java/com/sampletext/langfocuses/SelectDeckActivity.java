@@ -90,8 +90,7 @@ public class SelectDeckActivity extends AppCompatActivity {
 
         Static.SetPortrait(this);
 
-        View root = findViewById(R.id.selectdeck_root);
-        Static.SetViewScale(root);
+        Static.SetViewScale(findViewById(R.id.selectdeck_root));
 
         TextView mHeader = findViewById(R.id.selectdeck_header);
 

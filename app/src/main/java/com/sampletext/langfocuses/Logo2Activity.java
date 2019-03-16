@@ -2,7 +2,6 @@ package com.sampletext.langfocuses;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -11,13 +10,11 @@ import android.widget.TextView;
 
 public class Logo2Activity extends Activity {
 
-    ImageView logoImageView2;
+    ImageView _logoImageView;
 
-    TextView loadingText;
+    TextView _loadingText;
 
-    boolean abort;
-
-    int dots = 0;
+    int _dots = 0;
 
     Animation.AnimationListener animationListener = new Animation.AnimationListener() {
 
@@ -40,20 +37,7 @@ public class Logo2Activity extends Activity {
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logo2);
-
-        Static.SetPortrait(this);
-
-        logoImageView2 = findViewById(R.id.logoImageView2);
-        loadingText = findViewById(R.id.loadingText);
-
-        if (Static.DiagonalInches >= 6.5f) {
-            loadingText.setTextSize(loadingText.getTextSize() * Static.ScaleFactor);
-        }
-
+    void setupAnimation(ImageView logoImageView) {
         float animScaleStart = 0.95f;
         float animScaleEnd = 1.00f;
         float animRelativeTo = 0.5f;
@@ -65,38 +49,57 @@ public class Logo2Activity extends Activity {
                 Animation.RELATIVE_TO_SELF, animRelativeTo);
         anim.setFillAfter(true); //оставить результат, не сбрасывать на начало
         anim.setDuration(2000);
+        anim.setAnimationListener(animationListener);
 
+        logoImageView.setAnimation(anim);
+    }
+
+
+    private void launchDotsThread() {
         new Thread(new Runnable() {
-
             @Override
             public void run() {
                 while (true) {
                     runOnUiThread(new Runnable() {
-
                         @Override
                         public void run() {
-                            String dotsStr = "";
-                            for (int i = 0; i < dots; i++) {
-                                dotsStr += '.';
+                            StringBuilder dotsStr = new StringBuilder(4);
+                            for (int i = 0; i < _dots; i++) {
+                                dotsStr.append('.');
                             }
-//                            for (int i = dots; i < 4; i++) {
-//                                dotsStr += ' ';
-//                            }
-                            loadingText.setText("Loading" + dotsStr);
+                            _loadingText.setText(String.format("Loading%s", dotsStr));
                         }
                     });
                     try {
                         Thread.sleep(300);
-                        dots++;
-                        dots %= 4;
+                        _dots++;
+                        _dots %= 4;
                     } catch (InterruptedException e) {
                         break;
                     }
                 }
             }
         }).start();
-        anim.setAnimationListener(animationListener);
-        logoImageView2.setAnimation(anim);
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_logo2);
+
+        Static.SetPortrait(this);
+
+        Static.SetViewScale(findViewById(R.id.logo2_root));
+
+        _logoImageView = findViewById(R.id.logoImageView2);
+        _loadingText = findViewById(R.id.loadingText);
+
+        if (Static.DiagonalInches >= 6.5f) {
+            _loadingText.setTextSize(_loadingText.getTextSize() * Static.ScaleFactor);
+        }
+
+        setupAnimation(_logoImageView);
+
+        launchDotsThread();
     }
 }

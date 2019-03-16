@@ -102,10 +102,6 @@
             android:tag="5" />
     </LinearLayout>
 
-    <!--<Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="94" />-->
     <!--weight 141 = 94+47 -->
     <TextView
         android:id="@+id/deckNameHeaderText"
@@ -115,7 +111,7 @@
         android:layout_weight="141"
         android:fontFamily="@font/roboto_regular"
         android:gravity="bottom|center"
-        android:text="Гуманистические"
+        android:text="НАЗВАНИЕ КОЛОДЫ"
         android:textAllCaps="true"
         android:textColor="#2f5c78"
         android:textSize="15sp" />
@@ -144,8 +140,8 @@
                     android:id="@+id/mainPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:animateLayoutChanges="true"
                     android:layout_weight="1"
+                    android:animateLayoutChanges="true"
                     android:baselineAligned="false">
 
                     <android.support.v4.view.PagerTabStrip

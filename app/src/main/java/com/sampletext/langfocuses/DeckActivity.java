@@ -176,8 +176,7 @@ public class DeckActivity extends AppCompatActivity {
 
         Static.SetPortrait(this);
 
-        View root = findViewById(R.id.deckActivityRoot);
-        Static.SetViewScale(root);
+        Static.SetViewScale(findViewById(R.id.deckActivityRoot));
 
         findAndSetupDeckButtons();
         loadDeckButtonsOverlay();
@@ -196,6 +195,7 @@ public class DeckActivity extends AppCompatActivity {
 
         launchDeckFromIntent();
 
+        //устанавливать обязательно после загрузки колоды
         _mainPager.setAdapter(_pagerAdapter);
 
         Button btnBack = findViewById(R.id.btn_back);
@@ -237,7 +237,7 @@ public class DeckActivity extends AppCompatActivity {
                     deck.getDeckColor(), PorterDuff.Mode.SRC_ATOP);
             _mainSeekBar.getProgressDrawable().setColorFilter(
                     deck.getDeckColor(), PorterDuff.Mode.SRC_ATOP);
-            _mainSeekBar.setMax((deck.getCardsCount() - 1));
+            _mainSeekBar.setMax(deck.getCardsCount() - 1);
 
 
         } catch (Exception ignored) {
