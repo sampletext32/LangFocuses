@@ -42,7 +42,7 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="83"
-                android:background="@drawable/arrow_back"
+                android:background="@drawable/arrow_back_83_68"
                 android:scaleType="fitXY" />
         </LinearLayout>
 
