@@ -2,12 +2,14 @@ package com.sampletext.langfocuses;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class LogoActivity extends Activity {
 
@@ -38,6 +40,8 @@ public class LogoActivity extends Activity {
         Static.Density = metrics.density;
 
         Static.ScaleFactor = metrics.densityDpi / 240f;
+
+        //Toast.makeText(getApplicationContext(), Float.toString(metrics.density), Toast.LENGTH_SHORT).show();
 
         float yInches = metrics.heightPixels / metrics.ydpi;
         float xInches = metrics.widthPixels / metrics.xdpi;
@@ -82,6 +86,5 @@ public class LogoActivity extends Activity {
         measureDisplay();
 
         setupAnimation(logoImageView);
-
     }
 }

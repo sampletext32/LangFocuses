@@ -3,11 +3,12 @@
     package="com.sampletext.langfocuses">
 
     <application
+        android:hardwareAccelerated="true"
         android:icon="@drawable/icon_main"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icon_main"
-        android:hardwareAccelerated="true"
+        android:largeHeap="true"
         android:logo="@drawable/zastavka"
+        android:roundIcon="@drawable/icon_main"
         android:theme="@style/MyTheme.FullScreen">
         <activity
             android:name=".LogoActivity"

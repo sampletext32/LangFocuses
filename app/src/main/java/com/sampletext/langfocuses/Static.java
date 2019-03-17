@@ -2,8 +2,11 @@ package com.sampletext.langfocuses;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -17,6 +20,18 @@ public class Static {
     static float Density = 0f;
 
     static float ScaleFactor = 0f;
+
+    static void fitText(TextView textView) {
+        if (Static.DiagonalInches > 7f) {
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, (textView.getTextSize() - 1) * ScaleFactor);
+        }
+    }
+
+    static void fitText(Button button) {
+        if (Static.DiagonalInches > 7f) {
+            button.setTextSize(TypedValue.COMPLEX_UNIT_DIP, (button.getTextSize() - 1) * Static.ScaleFactor);
+        }
+    }
 
     static void SetPortrait(Activity a) {
         if (a == null) {
@@ -39,12 +54,14 @@ public class Static {
                 if (view.getViewTreeObserver().isAlive())
                     view.getViewTreeObserver().removeOnPreDrawListener(this);
 
-                //Делаем рассчёт относительно соотношения 16/9.
-                if (Math.abs(view.getHeight() / (float) view.getWidth() - 16 / 9f) > 0.01f) {
-                    float factor = (view.getWidth() * 16 / 9f) / view.getHeight();
-                    factor = factor + (1 - factor) / 2;
-                    view.setScaleY(factor);
-                }
+//                if (Density > 7) {
+//                    //Делаем рассчёт относительно соотношения 16/9.
+//                    if (Math.abs(view.getHeight() / (float) view.getWidth() - 16 / 9f) > 0.01f) {
+//                        float factor = (view.getWidth() * 16 / 9f) / view.getHeight();
+//                        factor = factor + (1 - factor) / 2;
+//                        view.setScaleY(factor);
+//                    }
+//                }
 
 
                 return false;

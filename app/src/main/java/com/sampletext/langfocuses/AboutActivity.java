@@ -1,19 +1,26 @@
 package com.sampletext.langfocuses;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class AboutActivity extends AppCompatActivity {
 
 
+    //region btnBackOnClickListener
+    View.OnClickListener btnBackOnClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    };
+    //endregion
     //region btnBackOnTouchListener
     private View.OnTouchListener btnBackOnTouchListener = new View.OnTouchListener() {
 
@@ -36,16 +43,6 @@ public class AboutActivity extends AppCompatActivity {
             return false;
         }
     };
-    //endregion
-
-    //region btnBackOnClickListener
-    View.OnClickListener btnBackOnClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            finish();
-        }
-    };
 
     //endregion
 
@@ -62,11 +59,8 @@ public class AboutActivity extends AppCompatActivity {
         TextView mHeader = findViewById(R.id.about_header);
         Button mBtnBack = findViewById(R.id.btn_back);
 
-        //проверяем на планшет
-        if (Static.DiagonalInches >= 6.5f) {
-            mContent.setTextSize(mContent.getTextSize() * Static.ScaleFactor);
-            mHeader.setTextSize(mHeader.getTextSize() * Static.ScaleFactor);
-        }
+        Static.fitText(mContent);
+        Static.fitText(mHeader);
 
         //предустанавливаем цвет кнопки назад
         mBtnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);

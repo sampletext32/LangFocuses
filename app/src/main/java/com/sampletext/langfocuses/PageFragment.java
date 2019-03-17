@@ -7,7 +7,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.Base64;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +43,8 @@ public class PageFragment extends Fragment {
         _contentContainer = view.findViewById(R.id.contentContainer);
 
         Card card = _deck.getCard(_pageIndex);
-        Typeface typefaceMedium = view.getContext().getResources().getFont(R.font.roboto_medium);
-        Typeface typefaceRegular = view.getContext().getResources().getFont(R.font.roboto_regular);
+        Typeface typefaceMedium = ResourcesCompat.getFont(view.getContext(), R.font.roboto_medium);
+        Typeface typefaceRegular = ResourcesCompat.getFont(view.getContext(), R.font.roboto_regular);
 
         for (int i = 0; i < card.getContentsLength(); i++) {
             switch (card.getContentsPart(i).get_type()) {
@@ -52,12 +54,13 @@ public class PageFragment extends Fragment {
 
                     tv.setTypeface(typefaceMedium);
                     tv.setText(card.getContentsPart(i).get_content());
-                    if (Static.DiagonalInches >= 6.5) {
-                        tv.setTextSize(26 * Static.ScaleFactor);
+                    if (Static.DiagonalInches >= 7) {
+                        tv.setTextSize(26);
                     }
                     else {
                         tv.setTextSize(20);
                     }
+                    Static.fitText(tv);
                     tv.setTextColor(_deck.getDeckColor());
                     _contentContainer.addView(tv);
                 }
@@ -68,12 +71,13 @@ public class PageFragment extends Fragment {
 
                     tv.setTypeface(typefaceMedium);
                     tv.setText(card.getContentsPart(i).get_content());
-                    if (Static.DiagonalInches >= 6.5) {
-                        tv.setTextSize(36 * Static.ScaleFactor);
+                    if (Static.DiagonalInches >= 7) {
+                        tv.setTextSize(36);
                     }
                     else {
                         tv.setTextSize(30);
                     }
+                    Static.fitText(tv);
                     tv.setTextColor(_deck.getDeckColor());
                     _contentContainer.addView(tv);
                 }
@@ -84,12 +88,13 @@ public class PageFragment extends Fragment {
 
                     tv.setTypeface(typefaceRegular);
                     tv.setText(card.getContentsPart(i).get_content());
-                    if (Static.DiagonalInches >= 6.5) {
-                        tv.setTextSize(22 * Static.ScaleFactor);
+                    if (Static.DiagonalInches >= 7) {
+                        tv.setTextSize(22);
                     }
                     else {
                         tv.setTextSize(18);
                     }
+                    Static.fitText(tv);
                     _contentContainer.addView(tv);
                 }
                 break;
@@ -113,12 +118,13 @@ public class PageFragment extends Fragment {
         tv.setTypeface(typefaceMedium);
         tv.setText(getResources().getString(R.string.aboutShortContent));
 
-        if (Static.DiagonalInches >= 6.5) {
-            tv.setTextSize(22 * Static.ScaleFactor);
+        if (Static.DiagonalInches >= 7) {
+            tv.setTextSize(22);
         }
         else {
             tv.setTextSize(18);
         }
+        Static.fitText(tv);
         _contentContainer.addView(tv);
 
         return view;

@@ -94,9 +94,7 @@ public class Logo2Activity extends Activity {
         _logoImageView = findViewById(R.id.logoImageView2);
         _loadingText = findViewById(R.id.loadingText);
 
-        if (Static.DiagonalInches >= 6.5f) {
-            _loadingText.setTextSize(_loadingText.getTextSize() * Static.ScaleFactor);
-        }
+        Static.fitText(_loadingText);
 
         setupAnimation(_logoImageView);
 

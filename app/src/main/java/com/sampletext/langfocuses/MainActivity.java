@@ -5,11 +5,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -74,17 +75,19 @@ public class MainActivity extends Activity {
         TextView header_antifocusy = findViewById(R.id.main_header_antifocusy);
         TextView header_yazyka = findViewById(R.id.main_header_yazyka);
 
+        Typeface typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.fk_mandarin);
+        header_antifocusy.setTypeface(typeface);
+        header_yazyka.setTypeface(typeface);
+
         Button _btnChooseDeck = findViewById(R.id.btn_choose_deck);
         Button _btnAbout = findViewById(R.id.btn_about);
         Button _btnHowToUse = findViewById(R.id.btn_how_to_use);
 
-        if (Static.DiagonalInches >= 6.5f) {
-            header_antifocusy.setTextSize(header_antifocusy.getTextSize() * Static.ScaleFactor);
-            header_yazyka.setTextSize(header_yazyka.getTextSize() * Static.ScaleFactor);
-            _btnAbout.setTextSize(_btnAbout.getTextSize() * Static.ScaleFactor);
-            _btnChooseDeck.setTextSize(_btnChooseDeck.getTextSize() * Static.ScaleFactor);
-            _btnHowToUse.setTextSize(_btnHowToUse.getTextSize() * Static.ScaleFactor);
-        }
+        Static.fitText(header_antifocusy);
+        Static.fitText(header_yazyka);
+        Static.fitText(_btnAbout);
+        Static.fitText(_btnChooseDeck);
+        Static.fitText(_btnHowToUse);
 
         _btnHowToUse.setOnTouchListener(btn_Highlight_OnTouchListener);
         _btnChooseDeck.setOnTouchListener(btn_Highlight_OnTouchListener);

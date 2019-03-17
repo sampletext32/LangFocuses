@@ -11,6 +11,15 @@ import android.widget.TextView;
 
 public class HowToUseActivity extends AppCompatActivity {
 
+    //region btnBackOnClickListener
+    View.OnClickListener btnBackOnClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    };
+    //endregion
     //region btnBackOnTouchListener
     private View.OnTouchListener btnBackOnTouchListener = new View.OnTouchListener() {
 
@@ -33,16 +42,7 @@ public class HowToUseActivity extends AppCompatActivity {
             return false;
         }
     };
-    //endregion
 
-    //region btnBackOnClickListener
-    View.OnClickListener btnBackOnClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            finish();
-        }
-    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,10 +56,8 @@ public class HowToUseActivity extends AppCompatActivity {
         TextView headerText = findViewById(R.id.howtouse_header);
         Button btnBack = findViewById(R.id.btn_back);
 
-        if (Static.DiagonalInches >= 6.5f) {
-            headerText.setTextSize(headerText.getTextSize() * Static.ScaleFactor);
-            infoText.setTextSize(infoText.getTextSize() * Static.ScaleFactor);
-        }
+        Static.fitText(headerText);
+        Static.fitText(infoText);
 
         btnBack.getBackground().setColorFilter(Color.parseColor("#574435"), PorterDuff.Mode.SRC_ATOP);
         btnBack.setOnTouchListener(btnBackOnTouchListener);

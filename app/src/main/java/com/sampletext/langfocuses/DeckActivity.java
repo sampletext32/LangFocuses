@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
@@ -27,13 +28,6 @@ public class DeckActivity extends AppCompatActivity {
     MyFragmentPagerAdapter _pagerAdapter;
 
     Drawable _deckChangeButtons_Overlay;
-
-    private int _displayedDeckId;
-
-    private SeekBar _mainSeekBar;
-
-    private ViewPager _mainPager;
-
     //region btnBackOnClickListener
     View.OnClickListener btnBackOnClickListener = new View.OnClickListener() {
 
@@ -42,8 +36,10 @@ public class DeckActivity extends AppCompatActivity {
             finish();
         }
     };
+    private int _displayedDeckId;
+    private SeekBar _mainSeekBar;
+    private ViewPager _mainPager;
     //endregion
-
     //region btnBackOnTouchListener
     private View.OnTouchListener btnBackOnTouchListener = new View.OnTouchListener() {
 
@@ -68,18 +64,6 @@ public class DeckActivity extends AppCompatActivity {
         }
     };
     //endregion
-
-    //region deckClickListener
-    final View.OnClickListener btnDeckClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            _displayedDeckId = Integer.parseInt(v.getTag().toString()) - 1;
-            initializeDeck();
-        }
-    };
-    //endregion
-
     //region pageChangeListener
     private OnPageChangeListener pageChangeListener = new OnPageChangeListener() {
 
@@ -106,7 +90,6 @@ public class DeckActivity extends AppCompatActivity {
         }
     };
     //endregion
-
     //region seekBarChangeListener
     private OnSeekBarChangeListener seekBarChangeListener = new OnSeekBarChangeListener() {
 
@@ -133,8 +116,17 @@ public class DeckActivity extends AppCompatActivity {
         }
     };
     //endregion
-
     private TextView _deckHeader;
+    //endregion
+    //region deckClickListener
+    final View.OnClickListener btnDeckClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            _displayedDeckId = Integer.parseInt(v.getTag().toString()) - 1;
+            initializeDeck();
+        }
+    };
 
     private void setLocalPageIndex(int index) {
         _mainSeekBar.setProgress(index);
@@ -154,7 +146,7 @@ public class DeckActivity extends AppCompatActivity {
     }
 
     void loadDeckButtonsOverlay() {
-        _deckChangeButtons_Overlay = getResources().getDrawable(R.drawable.card_change_bw_on3, getTheme());
+        _deckChangeButtons_Overlay = getResources().getDrawable(R.drawable.card_change_bw_on3);
     }
 
     void launchDeckFromIntent() {
@@ -204,9 +196,8 @@ public class DeckActivity extends AppCompatActivity {
         btnBack.setOnClickListener(btnBackOnClickListener);
 
 
-        if (Static.DiagonalInches >= 6.5f) {
-            _deckHeader.setTextSize(_deckHeader.getTextSize() * Static.ScaleFactor);
-            _deckHeader.setTextSize(_deckHeader.getTextSize() * Static.ScaleFactor);
+        Static.fitText(_deckHeader);
+        if (Static.DiagonalInches > 7f) {
             mainPagerTabStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20 * Static.ScaleFactor);
         }
     }
@@ -214,9 +205,14 @@ public class DeckActivity extends AppCompatActivity {
     private void initializeDeck() {
         try {
             for (Button btnDeck : _deckChangeButton) {
-                btnDeck.setForeground(null);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    btnDeck.setForeground(null);
+                }
             }
-            _deckChangeButton[_displayedDeckId].setForeground(_deckChangeButtons_Overlay);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                _deckChangeButton[_displayedDeckId].setForeground(_deckChangeButtons_Overlay);
+            }
 
             //проверяем перед сменой колоды, чтобы 16 карта не выскочила на другие
             if (_displayedCardIndex == 15) {

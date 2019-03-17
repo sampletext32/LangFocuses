@@ -119,13 +119,11 @@ public class SelectDeckActivity extends AppCompatActivity {
         deck4button.setOnTouchListener(deckTouchListener);
         deck4button.setOnClickListener(deckClickListener);
 
-        if (Static.DiagonalInches >= 6.5f) {
-            mHeader.setTextSize(mHeader.getTextSize() * Static.ScaleFactor);
-            deck0button.setTextSize(deck0button.getTextSize() * Static.ScaleFactor);
-            deck1button.setTextSize(deck1button.getTextSize() * Static.ScaleFactor);
-            deck2button.setTextSize(deck2button.getTextSize() * Static.ScaleFactor);
-            deck3button.setTextSize(deck3button.getTextSize() * Static.ScaleFactor);
-            deck4button.setTextSize(deck4button.getTextSize() * Static.ScaleFactor);
-        }
+        Static.fitText(mHeader);
+        Static.fitText(deck0button);
+        Static.fitText(deck1button);
+        Static.fitText(deck2button);
+        Static.fitText(deck3button);
+        Static.fitText(deck4button);
     }
 }
