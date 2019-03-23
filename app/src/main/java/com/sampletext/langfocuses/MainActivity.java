@@ -61,6 +61,13 @@ public class MainActivity extends Activity {
             startActivity(intent);
         }
     };
+    private View.OnClickListener BtnSchedule_OnClickListener  = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getApplicationContext(), ScheduleActivity.class);
+            startActivity(intent);
+        }
+    };
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -82,20 +89,25 @@ public class MainActivity extends Activity {
         Button _btnChooseDeck = findViewById(R.id.btn_choose_deck);
         Button _btnAbout = findViewById(R.id.btn_about);
         Button _btnHowToUse = findViewById(R.id.btn_how_to_use);
+        Button _btnSchedule = findViewById(R.id.btn_schedule);
 
         Static.fitText(header_antifocusy);
         Static.fitText(header_yazyka);
         Static.fitText(_btnAbout);
         Static.fitText(_btnChooseDeck);
         Static.fitText(_btnHowToUse);
+        Static.fitText(_btnSchedule);
 
         _btnHowToUse.setOnTouchListener(btn_Highlight_OnTouchListener);
         _btnChooseDeck.setOnTouchListener(btn_Highlight_OnTouchListener);
         _btnAbout.setOnTouchListener(btn_Highlight_OnTouchListener);
+        _btnSchedule.setOnTouchListener(btn_Highlight_OnTouchListener);
 
         _btnHowToUse.setOnClickListener(BtnHowToUse_OnClickListener);
         _btnChooseDeck.setOnClickListener(BtnChooseDeck_OnClickListener);
         _btnAbout.setOnClickListener(BtnAbout_OnClickListener);
+        _btnSchedule.setOnClickListener(BtnSchedule_OnClickListener);
+
     }
 }
 

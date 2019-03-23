@@ -140,5 +140,30 @@
                 android:textColor="#574435"
                 android:textSize="22.5sp" />
         </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="44" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="169"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1080">
+
+            <Button
+                android:id="@+id/btn_schedule"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="800"
+                android:background="@drawable/rounded"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/schedule"
+                android:textAllCaps="false"
+                android:textColor="#574435"
+                android:textSize="22.5sp" />
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

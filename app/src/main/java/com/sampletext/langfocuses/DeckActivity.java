@@ -36,10 +36,10 @@ public class DeckActivity extends AppCompatActivity {
             finish();
         }
     };
+    //endregion
     private int _displayedDeckId;
     private SeekBar _mainSeekBar;
     private ViewPager _mainPager;
-    //endregion
     //region btnBackOnTouchListener
     private View.OnTouchListener btnBackOnTouchListener = new View.OnTouchListener() {
 

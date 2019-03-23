@@ -2,14 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sampletext.langfocuses">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:hardwareAccelerated="true"
+        android:usesCleartextTraffic="true"
         android:icon="@drawable/icon_main"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:logo="@drawable/zastavka"
         android:roundIcon="@drawable/icon_main"
         android:theme="@style/MyTheme.FullScreen">
+        <activity android:name=".ScheduleActivity"></activity>
         <activity
             android:name=".LogoActivity"
             android:launchMode="singleTop"
