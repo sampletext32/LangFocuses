@@ -114,7 +114,6 @@ public class ScheduleActivity extends AppCompatActivity {
         btnBack.setOnTouchListener(btnBackOnTouchListener);
         btnBack.setOnClickListener(btnBackOnClickListener);
 
-        //final String bannerUrl = "http://itpark32.ru/banner/";
         final String bannerUrl = "http://institutnlp.tilda.ws/banerfy";
 
         ConnectivityManager cm =
@@ -123,7 +122,7 @@ public class ScheduleActivity extends AppCompatActivity {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
         boolean isConnected = (activeNetwork != null) && activeNetwork.isConnected();
-
+        
         if (isConnected) {
 
             new Thread(new Runnable() {
