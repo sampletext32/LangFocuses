@@ -4,16 +4,17 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
     <application
         android:hardwareAccelerated="true"
-        android:usesCleartextTraffic="true"
         android:icon="@drawable/icon_main"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:logo="@drawable/zastavka"
         android:roundIcon="@drawable/icon_main"
-        android:theme="@style/MyTheme.FullScreen">
-        <activity android:name=".ScheduleActivity"></activity>
+        android:theme="@style/MyTheme.FullScreen"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".LogoActivity"
             android:launchMode="singleTop"
@@ -66,6 +67,14 @@
         </activity>
         <activity
             android:name=".DeckActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ScheduleActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>

@@ -70,6 +70,11 @@ public class ScheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+
+        Static.SetPortrait(this);
+
+        Static.SetViewScale(findViewById(R.id.about_root));
+
         final TextView schedule_content = findViewById(R.id.schedule_content);
         final ProgressBar schedule_progressbar = findViewById(R.id.schedule_progressbar);
         final ImageView schedule_imageview = findViewById(R.id.schedule_image);
@@ -122,7 +127,7 @@ public class ScheduleActivity extends AppCompatActivity {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
         boolean isConnected = (activeNetwork != null) && activeNetwork.isConnected();
-        
+
         if (isConnected) {
 
             new Thread(new Runnable() {
