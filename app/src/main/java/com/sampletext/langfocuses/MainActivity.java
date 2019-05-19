@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+
 public class MainActivity extends Activity {
 
     View.OnTouchListener btn_Highlight_OnTouchListener = new View.OnTouchListener() {
@@ -107,7 +109,6 @@ public class MainActivity extends Activity {
         _btnChooseDeck.setOnClickListener(BtnChooseDeck_OnClickListener);
         _btnAbout.setOnClickListener(BtnAbout_OnClickListener);
         _btnSchedule.setOnClickListener(BtnSchedule_OnClickListener);
-
     }
 }
 

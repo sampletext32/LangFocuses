@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "901496124619",
+    "firebase_url": "https://comsampletextlangfocuses.firebaseio.com",
+    "project_id": "comsampletextlangfocuses",
+    "storage_bucket": "comsampletextlangfocuses.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901496124619:android:59b63b46a0118999",
+        "android_client_info": {
+          "package_name": "com.sampletext.langfocuses"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901496124619-m30o5a8702qml0cbqmk4sqnm3phk74rv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp5y9X6QTu4gW_tx8x2g-8Bzudw7Mbfb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901496124619-m30o5a8702qml0cbqmk4sqnm3phk74rv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
