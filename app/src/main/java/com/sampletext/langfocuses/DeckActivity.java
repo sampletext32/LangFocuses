@@ -156,7 +156,6 @@ public class DeckActivity extends AppCompatActivity {
             finish();
         } else {
             _displayedDeckId = deck_id;
-            initializeDeck();
         }
     }
 
@@ -164,7 +163,13 @@ public class DeckActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deck);
+
+        try {
+            setContentView(R.layout.activity_deck);
+        } catch (OutOfMemoryError e) {
+            Toast.makeText(getApplicationContext(), "Not enough memory", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
         Static.SetPortrait(this);
 
@@ -186,6 +191,8 @@ public class DeckActivity extends AppCompatActivity {
         _deckHeader = findViewById(R.id.deckNameHeaderText);
 
         launchDeckFromIntent();
+
+        initializeDeck();
 
         //устанавливать обязательно после загрузки колоды
         _mainPager.setAdapter(_pagerAdapter);

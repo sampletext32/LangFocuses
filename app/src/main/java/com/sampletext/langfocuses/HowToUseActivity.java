@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HowToUseActivity extends AppCompatActivity {
 
@@ -46,7 +47,13 @@ public class HowToUseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_how_to_use);
+
+        try {
+            setContentView(R.layout.activity_how_to_use);
+        } catch (OutOfMemoryError e) {
+            Toast.makeText(getApplicationContext(), "Not enough memory", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
         Static.SetPortrait(this);
 

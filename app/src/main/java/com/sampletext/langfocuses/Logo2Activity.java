@@ -7,6 +7,7 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Logo2Activity extends Activity {
 
@@ -85,7 +86,13 @@ public class Logo2Activity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logo2);
+
+        try {
+            setContentView(R.layout.activity_logo2);
+        } catch (OutOfMemoryError e) {
+            Toast.makeText(getApplicationContext(), "Not enough memory", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
         Static.SetPortrait(this);
 

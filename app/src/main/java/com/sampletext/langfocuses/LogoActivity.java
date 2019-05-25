@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class LogoActivity extends Activity {
 
@@ -72,7 +73,15 @@ public class LogoActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logo);
+
+        try {
+            setContentView(R.layout.activity_logo);
+        } catch (OutOfMemoryError e) {
+            Toast.makeText(getApplicationContext(), "Not enough memory", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+
         ImageView logoImageView = findViewById(R.id.logoImageView);
 
         DecksContainer.init(this);

@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -63,7 +65,7 @@ public class MainActivity extends Activity {
             startActivity(intent);
         }
     };
-    private View.OnClickListener BtnSchedule_OnClickListener  = new View.OnClickListener() {
+    private View.OnClickListener BtnSchedule_OnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(getApplicationContext(), ScheduleActivity.class);
@@ -75,7 +77,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        try {
+            setContentView(R.layout.activity_main);
+        } catch (OutOfMemoryError e) {
+            Toast.makeText(getApplicationContext(), "Not enough memory", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
         Static.SetPortrait(this);
 
@@ -84,9 +92,12 @@ public class MainActivity extends Activity {
         TextView header_antifocusy = findViewById(R.id.main_header_antifocusy);
         TextView header_yazyka = findViewById(R.id.main_header_yazyka);
 
-        Typeface typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.fk_mandarin);
+
+        //Typeface typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.fk_mandarin);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/_fk_mandarin.ttf");
         header_antifocusy.setTypeface(typeface);
         header_yazyka.setTypeface(typeface);
+
 
         Button _btnChooseDeck = findViewById(R.id.btn_choose_deck);
         Button _btnAbout = findViewById(R.id.btn_about);

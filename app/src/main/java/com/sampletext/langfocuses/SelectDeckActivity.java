@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SelectDeckActivity extends AppCompatActivity {
 
@@ -86,8 +87,13 @@ public class SelectDeckActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_deck);
 
+        try {
+            setContentView(R.layout.activity_select_deck);
+        } catch (OutOfMemoryError e) {
+            Toast.makeText(getApplicationContext(), "Not enough memory", Toast.LENGTH_SHORT).show();
+            finish();
+        }
         Static.SetPortrait(this);
 
         Static.SetViewScale(findViewById(R.id.selectdeck_root));

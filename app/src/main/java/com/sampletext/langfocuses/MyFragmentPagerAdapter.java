@@ -15,8 +15,8 @@ public class MyFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     void set_deck(Deck _deck) {
         this._deck = _deck;
-
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return (position + 1) + " / " + getCount();
@@ -39,7 +39,12 @@ public class MyFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return _deck.getCardsCount();
+        int res = 0;
+        try {
+            res = _deck.getCardsCount();
+        } catch (NullPointerException ignored) {
+        }
+        return res;
     }
 
 }

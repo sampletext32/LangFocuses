@@ -42,8 +42,9 @@ public class PageFragment extends Fragment {
         _contentContainer = view.findViewById(R.id.contentContainer);
 
         Card card = _deck.getCard(_pageIndex);
-        Typeface typefaceMedium = ResourcesCompat.getFont(view.getContext(), R.font.roboto_medium);
-        Typeface typefaceRegular = ResourcesCompat.getFont(view.getContext(), R.font.roboto_regular);
+
+        Typeface typefaceMedium = Typeface.createFromAsset(view.getContext().getAssets(), "fonts/_roboto_medium.ttf");
+        Typeface typefaceRegular = Typeface.createFromAsset(view.getContext().getAssets(), "fonts/_roboto_regular.ttf");
 
         for (int i = 0; i < card.getContentsLength(); i++) {
             switch (card.getContentsPart(i).get_type()) {
