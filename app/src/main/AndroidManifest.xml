@@ -7,7 +7,7 @@
 
 
     <application
-        android:hardwareAccelerated="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/icon_main"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -67,14 +67,6 @@
         </activity>
         <activity
             android:name=".DeckActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ScheduleActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>
