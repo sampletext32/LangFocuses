@@ -88,7 +88,7 @@
             android:tag="0"
             android:text="Гуманистические"
             android:textAllCaps="false"
-            android:textColor="#669766"
+            android:textColor="#2E7D32"
             android:textSize="29sp" />
     </LinearLayout>
 
@@ -132,7 +132,7 @@
             android:tag="1"
             android:text="Боевые"
             android:textAllCaps="false"
-            android:textColor="#986c6c"
+            android:textColor="#795548"
             android:textSize="29sp" />
     </LinearLayout>
 
@@ -175,7 +175,7 @@
             android:tag="2"
             android:text="Провокативные"
             android:textAllCaps="false"
-            android:textColor="#5a88a5"
+            android:textColor="#546E7A"
             android:textSize="29sp" />
     </LinearLayout>
 
@@ -261,7 +261,7 @@
             android:tag="4"
             android:text="Анти-фокусы языка"
             android:textAllCaps="false"
-            android:textColor="#8370b4"
+            android:textColor="#7E57C2"
             android:textSize="28sp" />
     </LinearLayout>
     <!-- 1080 - 2 * 72 = 936-->

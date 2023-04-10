@@ -4,83 +4,70 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class SelectDeckActivity extends AppCompatActivity {
 
     //region deckClickListener
-    View.OnClickListener deckClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            int position = Integer.parseInt(v.getTag().toString());
-            Intent intent = new Intent(SelectDeckActivity.this, DeckActivity.class);
-            intent.putExtra("deck_id", position);
-            startActivity(intent);
-        }
+    View.OnClickListener deckClickListener = v -> {
+        int position = Integer.parseInt(v.getTag().toString());
+        Log.e("EGOP", "DECK CLICK LISTENER");
+        Intent intent = new Intent(SelectDeckActivity.this, DeckActivity.class);
+        intent.putExtra("deck_id", position);
+        Log.e("EGOP", "STARTING ACTIVITY");
+        startActivity(intent);
+        Log.e("EGOP", "Started activity");
     };
     //endregion
 
     //region btnBackOnClickListener
-    View.OnClickListener btnBackOnClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            finish();
-        }
-    };
+    View.OnClickListener btnBackOnClickListener = v -> finish();
     //endregion
 
     //region deckTouchListener
-    private View.OnTouchListener deckTouchListener = new View.OnTouchListener() {
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_HOVER_ENTER:
-                case MotionEvent.ACTION_DOWN:
-                    v.getBackground().setColorFilter(Color.parseColor("#BBBBBB"), PorterDuff.Mode.SRC_ATOP);
-                    break;
-                case MotionEvent.ACTION_HOVER_EXIT:
-                case MotionEvent.ACTION_UP:
-                    v.getBackground().clearColorFilter();
-                    break;
-                case MotionEvent.ACTION_CANCEL:
-                    v.getBackground().clearColorFilter();
-                    break;
-                default:
-            }
-            return false;
+    private View.OnTouchListener deckTouchListener = (v, event) -> {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_HOVER_ENTER:
+            case MotionEvent.ACTION_DOWN:
+                v.getBackground().setColorFilter(Color.parseColor("#BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+                break;
+            case MotionEvent.ACTION_HOVER_EXIT:
+            case MotionEvent.ACTION_UP:
+                v.getBackground().clearColorFilter();
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                v.getBackground().clearColorFilter();
+                break;
+            default:
         }
+        return false;
     };
     //endregion
 
     //region btnBackOnTouchListener
-    private View.OnTouchListener btnBackOnTouchListener = new View.OnTouchListener() {
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_HOVER_ENTER:
-                case MotionEvent.ACTION_DOWN:
-                    v.getBackground().setColorFilter(Color.parseColor("#e6c287"), PorterDuff.Mode.SRC_ATOP);
-                    break;
-                case MotionEvent.ACTION_HOVER_EXIT:
-                case MotionEvent.ACTION_UP:
-                    v.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
-                    break;
-                case MotionEvent.ACTION_CANCEL:
-                    v.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
-                    break;
-                default:
-            }
-            return false;
+    private View.OnTouchListener btnBackOnTouchListener = (v, event) -> {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_HOVER_ENTER:
+            case MotionEvent.ACTION_DOWN:
+                v.getBackground().setColorFilter(Color.parseColor("#e6c287"), PorterDuff.Mode.SRC_ATOP);
+                break;
+            case MotionEvent.ACTION_HOVER_EXIT:
+            case MotionEvent.ACTION_UP:
+                v.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                v.getBackground().setColorFilter(Color.parseColor("#87704A"), PorterDuff.Mode.SRC_ATOP);
+                break;
+            default:
         }
+        return false;
     };
     //endregion
 

@@ -35,51 +35,35 @@ public class MainActivity extends Activity {
 
     String imgTargetUrl = "";
 
-    View.OnTouchListener btn_Highlight_OnTouchListener = new View.OnTouchListener() {
+    View.OnTouchListener btn_Highlight_OnTouchListener = (v, event) -> {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_HOVER_ENTER:
+            case MotionEvent.ACTION_DOWN:
+                v.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
+                break;
+            case MotionEvent.ACTION_HOVER_EXIT:
+            case MotionEvent.ACTION_UP:
+                v.getBackground().clearColorFilter();
+                break;
 
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_HOVER_ENTER:
-                case MotionEvent.ACTION_DOWN:
-                    v.getBackground().setColorFilter(Color.parseColor("#F5BBBBBB"), PorterDuff.Mode.SRC_ATOP);
-                    break;
-                case MotionEvent.ACTION_HOVER_EXIT:
-                case MotionEvent.ACTION_UP:
-                    v.getBackground().clearColorFilter();
-                    break;
-
-                default:
-            }
-            return false;
+            default:
         }
+        return false;
     };
 
-    private View.OnClickListener BtnHowToUse_OnClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(), HowToUseActivity.class);
-            startActivity(intent);
-        }
+    private View.OnClickListener BtnHowToUse_OnClickListener = v -> {
+        Intent intent = new Intent(getApplicationContext(), HowToUseActivity.class);
+        startActivity(intent);
     };
 
-    private View.OnClickListener BtnChooseDeck_OnClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(), SelectDeckActivity.class);
-            startActivity(intent);
-        }
+    private View.OnClickListener BtnChooseDeck_OnClickListener = v -> {
+        Intent intent = new Intent(getApplicationContext(), SelectDeckActivity.class);
+        startActivity(intent);
     };
 
-    private View.OnClickListener BtnAbout_OnClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
-            startActivity(intent);
-        }
+    private View.OnClickListener BtnAbout_OnClickListener = v -> {
+        Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
+        startActivity(intent);
     };
 
     @SuppressLint("ClickableViewAccessibility")
@@ -134,15 +118,12 @@ public class MainActivity extends Activity {
         final ImageView schedule_imageview = findViewById(R.id.schedule_image);
         final FrameLayout schedule_container = findViewById(R.id.schedule_container);
 
-        schedule_imageview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!imgTargetUrl.equals("")) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(imgTargetUrl));
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Image Is Not Loaded", Toast.LENGTH_SHORT).show();
-                }
+        schedule_imageview.setOnClickListener(v -> {
+            if (!imgTargetUrl.equals("")) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(imgTargetUrl));
+                startActivity(intent);
+            } else {
+                Toast.makeText(getApplicationContext(), "Image Is Not Loaded", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -156,47 +137,36 @@ public class MainActivity extends Activity {
         boolean isConnected = (activeNetwork != null) && activeNetwork.isConnected();
 
         if (isConnected) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Document document = Jsoup.connect(bannerUrl).timeout(5000).get();
-                        Element a = document.getElementsByTag("a").get(0);
-                        final String ahref = a.attr("abs:href");
-                        Element img = a.child(0);
-                        final String imgsrc = img.attr("abs:data-original");
-                        URL u = new URL(imgsrc);
-                        InputStream inputStream = u.openStream();
-                        final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                        inputStream.close();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                imgTargetUrl = ahref;
-                                schedule_imageview.setImageBitmap(bitmap);
-                                schedule_imageview.invalidate();
-                            }
-                        });
+            new Thread(() -> {
+                try {
+                    Document document = Jsoup.connect(bannerUrl).timeout(5000).get();
+                    Element a = document.getElementsByTag("a").get(0);
+                    final String ahref = a.attr("abs:href");
+                    Element img = a.child(0);
+                    final String imgsrc = img.attr("abs:data-original");
+                    URL u = new URL(imgsrc);
+                    InputStream inputStream = u.openStream();
+                    final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    inputStream.close();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            imgTargetUrl = ahref;
+                            schedule_imageview.setImageBitmap(bitmap);
+                            schedule_imageview.invalidate();
+                        }
+                    });
 
-                    }
-                    catch (final Exception e) {
-                        e.printStackTrace();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                schedule_container.removeView(schedule_imageview);
-                                schedule_content.setText("Не удалось установить соединение с интернетом");
-                            }
-                        });
-                    }
-                    finally {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                schedule_container.removeView(schedule_progressbar);
-                            }
-                        });
-                    }
+                }
+                catch (final Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(() -> {
+                        schedule_container.removeView(schedule_imageview);
+                        schedule_content.setText("Не удалось установить соединение с интернетом");
+                    });
+                }
+                finally {
+                    runOnUiThread(() -> schedule_container.removeView(schedule_progressbar));
                 }
             }).start();
         } else {

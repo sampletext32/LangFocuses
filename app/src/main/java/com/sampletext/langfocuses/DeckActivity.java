@@ -6,10 +6,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.PagerTabStrip;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +14,10 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerTabStrip;
+import androidx.viewpager.widget.ViewPager;
 
 public class DeckActivity extends AppCompatActivity {
 
@@ -65,7 +65,7 @@ public class DeckActivity extends AppCompatActivity {
     };
     //endregion
     //region pageChangeListener
-    private OnPageChangeListener pageChangeListener = new OnPageChangeListener() {
+    private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
 
         int lastPos = 0;//last page index
 
